@@ -1,0 +1,69 @@
+entity Person {
+	name String required,
+}
+
+entity Advertisement {
+	activeFrom Instant required,
+    activeUntill Instant required,
+    image Blob required,
+    question String required,
+}
+
+entity AdvertisementAnswers {
+	answer String,
+	city String,
+	stateProvince String
+}
+
+entity UserAdvertisementAnswers {
+	stateProvince String
+}
+
+entity Prize {
+	registationStops Instant,
+    winnerChosenAt Instant,
+	creditsRequired Long,
+}
+
+entity PrizeRegistration {
+	registation Instant
+}
+
+relationship OneToOne {
+	PrizeRegistration{prize} to Prize
+}
+
+relationship OneToOne {
+	PrizeRegistration{user} to Person
+}
+
+relationship OneToOne {
+	Advertisement{correctAnswer} to AdvertisementAnswers
+}
+
+relationship OneToOne {
+	AdvertisementAnswers{advertisement} to Advertisement
+}
+
+relationship OneToOne {
+	UserAdvertisementAnswers{user} to Person
+}
+
+relationship OneToOne {
+	UserAdvertisementAnswers{advertisement} to Advertisement
+}
+
+relationship OneToOne {
+	Prize{winner} to Person
+}
+
+
+// Set pagination options
+paginate Prize with infinite-scroll
+paginate Person with pagination
+
+// Use Data Transfer Obfjects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl

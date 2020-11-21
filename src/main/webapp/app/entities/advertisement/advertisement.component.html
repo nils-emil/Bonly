@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bonlyApp.advertisement.home.title">Advertisements</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-advertisement" [routerLink]="['/advertisement/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="bonlyApp.advertisement.home.createLabel">
+            Create a new Advertisement
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="advertisements?.length === 0">
+        <span jhiTranslate="bonlyApp.advertisement.home.notFound">No advertisements found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="advertisements && advertisements.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisement.activeFrom">Active From</span></th>
+                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisement.activeUntill">Active Untill</span></th>
+                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisement.image">Image</span></th>
+                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisement.question">Question</span></th>
+                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisement.correctAnswer">Correct Answer</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let advertisement of advertisements ;trackBy: trackId">
+                    <td><a [routerLink]="['/advertisement', advertisement.id, 'view']">{{ advertisement.id }}</a></td>
+                    <td>{{ advertisement.activeFrom | date:'medium' }}</td>
+                    <td>{{ advertisement.activeUntill | date:'medium' }}</td>
+                    <td>
+                        <a *ngIf="advertisement.image" (click)="openFile(advertisement.imageContentType, advertisement.image)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="advertisement.image">{{ advertisement.imageContentType }}, {{ byteSize(advertisement.image) }}</span>
+                    </td>
+                    <td>{{ advertisement.question }}</td>
+                    <td>
+                        <div *ngIf="advertisement.correctAnswerId">
+                            <a [routerLink]="['/advertisement-answers', advertisement.correctAnswerId , 'view']" >{{ advertisement.correctAnswerId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/advertisement', advertisement.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/advertisement', advertisement.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(advertisement)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

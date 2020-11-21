@@ -1,0 +1,26 @@
+{
+  "bonlyApp": {
+    "advertisement": {
+      "home": {
+        "title": "Advertisements",
+        "createLabel": "Create a new Advertisement",
+        "createOrEditLabel": "Create or edit a Advertisement",
+        "notFound": "No Advertisements found"
+      },
+      "created": "A new Advertisement is created with identifier {{ param }}",
+      "updated": "A Advertisement is updated with identifier {{ param }}",
+      "deleted": "A Advertisement is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Advertisement {{ id }}?"
+      },
+      "detail": {
+        "title": "Advertisement"
+      },
+      "activeFrom": "Active From",
+      "activeUntill": "Active Untill",
+      "image": "Image",
+      "question": "Question",
+      "correctAnswer": "Correct Answer"
+    }
+  }
+}

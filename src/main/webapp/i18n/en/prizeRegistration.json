@@ -1,0 +1,24 @@
+{
+  "bonlyApp": {
+    "prizeRegistration": {
+      "home": {
+        "title": "Prize Registrations",
+        "createLabel": "Create a new Prize Registration",
+        "createOrEditLabel": "Create or edit a Prize Registration",
+        "notFound": "No Prize Registrations found"
+      },
+      "created": "A new Prize Registration is created with identifier {{ param }}",
+      "updated": "A Prize Registration is updated with identifier {{ param }}",
+      "deleted": "A Prize Registration is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Prize Registration {{ id }}?"
+      },
+      "detail": {
+        "title": "Prize Registration"
+      },
+      "registation": "Registation",
+      "prize": "Prize",
+      "user": "User"
+    }
+  }
+}

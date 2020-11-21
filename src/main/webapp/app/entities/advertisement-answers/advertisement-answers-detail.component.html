@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="advertisementAnswers">
+            <h2><span jhiTranslate="bonlyApp.advertisementAnswers.detail.title">Advertisement Answers</span> {{ advertisementAnswers.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bonlyApp.advertisementAnswers.answer">Answer</span></dt>
+                <dd>
+                    <span>{{ advertisementAnswers.answer }}</span>
+                </dd>
+                <dt><span jhiTranslate="bonlyApp.advertisementAnswers.city">City</span></dt>
+                <dd>
+                    <span>{{ advertisementAnswers.city }}</span>
+                </dd>
+                <dt><span jhiTranslate="bonlyApp.advertisementAnswers.stateProvince">State Province</span></dt>
+                <dd>
+                    <span>{{ advertisementAnswers.stateProvince }}</span>
+                </dd>
+                <dt><span jhiTranslate="bonlyApp.advertisementAnswers.advertisement">Advertisement</span></dt>
+                <dd>
+                    <div *ngIf="advertisementAnswers.advertisementId">
+                        <a [routerLink]="['/advertisement', advertisementAnswers.advertisementId, 'view']">{{ advertisementAnswers.advertisementId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/advertisement-answers', advertisementAnswers.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -48,6 +48,11 @@ public class CacheConfiguration {
             createCache(cm, ee.bonly.advertisement.domain.User.class.getName());
             createCache(cm, ee.bonly.advertisement.domain.Authority.class.getName());
             createCache(cm, ee.bonly.advertisement.domain.User.class.getName() + ".authorities");
+            createCache(cm, ee.bonly.advertisement.domain.Advertisement.class.getName());
+            createCache(cm, ee.bonly.advertisement.domain.AdvertisementAnswers.class.getName());
+            createCache(cm, ee.bonly.advertisement.domain.UserAdvertisementAnswers.class.getName());
+            createCache(cm, ee.bonly.advertisement.domain.Prize.class.getName());
+            createCache(cm, ee.bonly.advertisement.domain.PrizeRegistration.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

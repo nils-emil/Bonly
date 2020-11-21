@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bonlyApp.userAdvertisementAnswers.home.title">User Advertisement Answers</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-user-advertisement-answers" [routerLink]="['/user-advertisement-answers/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="bonlyApp.userAdvertisementAnswers.home.createLabel">
+            Create a new User Advertisement Answers
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="userAdvertisementAnswers?.length === 0">
+        <span jhiTranslate="bonlyApp.userAdvertisementAnswers.home.notFound">No userAdvertisementAnswers found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="userAdvertisementAnswers && userAdvertisementAnswers.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="bonlyApp.userAdvertisementAnswers.stateProvince">State Province</span></th>
+                    <th scope="col" ><span jhiTranslate="bonlyApp.userAdvertisementAnswers.user">User</span></th>
+                    <th scope="col" ><span jhiTranslate="bonlyApp.userAdvertisementAnswers.advertisement">Advertisement</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let userAdvertisementAnswers of userAdvertisementAnswers ;trackBy: trackId">
+                    <td><a [routerLink]="['/user-advertisement-answers', userAdvertisementAnswers.id, 'view']">{{ userAdvertisementAnswers.id }}</a></td>
+                    <td>{{ userAdvertisementAnswers.stateProvince }}</td>
+                    <td>
+                        <div *ngIf="userAdvertisementAnswers.userId">
+                            <a [routerLink]="['/person', userAdvertisementAnswers.userId , 'view']" >{{ userAdvertisementAnswers.userId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="userAdvertisementAnswers.advertisementId">
+                            <a [routerLink]="['/advertisement', userAdvertisementAnswers.advertisementId , 'view']" >{{ userAdvertisementAnswers.advertisementId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/user-advertisement-answers', userAdvertisementAnswers.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/user-advertisement-answers', userAdvertisementAnswers.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(userAdvertisementAnswers)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

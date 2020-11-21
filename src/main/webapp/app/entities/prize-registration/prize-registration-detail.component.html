@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="prizeRegistration">
+            <h2><span jhiTranslate="bonlyApp.prizeRegistration.detail.title">Prize Registration</span> {{ prizeRegistration.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bonlyApp.prizeRegistration.registation">Registation</span></dt>
+                <dd>
+                    <span>{{ prizeRegistration.registation }}</span>
+                </dd>
+                <dt><span jhiTranslate="bonlyApp.prizeRegistration.prize">Prize</span></dt>
+                <dd>
+                    <div *ngIf="prizeRegistration.prizeId">
+                        <a [routerLink]="['/prize', prizeRegistration.prizeId, 'view']">{{ prizeRegistration.prizeId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bonlyApp.prizeRegistration.user">User</span></dt>
+                <dd>
+                    <div *ngIf="prizeRegistration.userId">
+                        <a [routerLink]="['/person', prizeRegistration.userId, 'view']">{{ prizeRegistration.userId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/prize-registration', prizeRegistration.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

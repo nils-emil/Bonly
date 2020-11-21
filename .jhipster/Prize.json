@@ -1,0 +1,38 @@
+{
+  "name": "Prize",
+  "fields": [
+    {
+      "fieldName": "registationStops",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "winnerChosenAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "creditsRequired",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "person",
+      "otherEntityRelationshipName": "prize",
+      "relationshipName": "winner",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
+  "changelogDate": "20201121141908",
+  "entityTableName": "prize",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
