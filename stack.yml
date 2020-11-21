@@ -1,0 +1,15 @@
+version: '3'
+services:
+  db:
+    image: 'postgres:11.4'
+    container_name: 'bonly-db'
+    ports:
+      - '5444:5432'
+    #    volumes:
+    #      - ~/docker/volumes/postgres/bonly:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: bonly
+      SCHEMA: public
+    restart: unless-stopped
