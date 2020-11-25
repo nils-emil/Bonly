@@ -10,8 +10,8 @@
             </div>
             <div class="ad-choice-button-group mt-2">
 
-                <div id="wrapper">
-                    <button class=" item" (click)="chooseAnswer(advertisement?.id, answer?.id)"
+                <div class="grid-container" id="grid-container">
+                    <button class=" flex-item" (click)="chooseAnswer(advertisement?.id, answer?.id)"
                             *ngFor="let answer of advertisement?.advertisementAnswers">{{answer.answer}}
                     </button>
                 </div>

@@ -38,5 +38,6 @@
     <include file="config/liquibase/changelog/20201124003020_add_age_to_user.sql" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201125003020_add_credit_to ad.sql" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201125003022_change_col_type_image.sql" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201125003024_image_type_not_null_drop.sql" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

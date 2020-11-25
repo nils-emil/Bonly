@@ -22,6 +22,7 @@ import { PrizesComponent } from 'app/client/prizes/prizes.component';
 import { PrizeRegistrationModalComponent } from './client/prize-registration-modal/prize-registration-modal.component';
 import { MoreAccountQuestionsComponent } from './client/more-account-questions/more-account-questions.component';
 import { MaterialModule } from 'app/material.module';
+import { ContactComponent } from 'app/client/contact/contact/contact.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { MaterialModule } from 'app/material.module';
   ],
   declarations: [
     AdvertisementChoosingComponent,
+    ContactComponent,
     PrizesComponent,
     MainComponent,
     NavbarComponent,

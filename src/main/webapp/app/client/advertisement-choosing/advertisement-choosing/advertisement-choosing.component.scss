@@ -37,31 +37,10 @@
 
 .ad-image-container {
   max-width: 20rem;
+  z-index: 10;
   margin: 0 auto;
   border-radius: 0.5rem;
   overflow: hidden;
-}
-
-#wrapper {
-  width: 100%;
-  max-width: 20rem;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
-}
-
-.item {
-  background-color: white;
-  color: black;
-  grid-column-start: auto;
-  width: 100%;
-}
-
-.item:nth-child(1),
-.item:nth-child(2),
-.item:nth-child(3):last-child {
-  grid-column-start: span 1;
 }
 
 button {
@@ -70,10 +49,23 @@ button {
   border-radius: 6px;
 }
 
-.item {
-  border-radius: 6px;
-  padding: 10px 0;
-  font-family: sans-serif;
-  font-weight: bold;
+.grid-container {
+  position: relative;
+  z-index: 10;
+  max-width: 20rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.flex-item {
+  width: 40%;
+  border: 1px solid #000;
+  flex-grow: 1;
+  min-height: 2rem;
+  box-sizing: border-box;
+  margin: 0 5px 10px;
+  justify-content: space-between;
   text-align: center;
 }
