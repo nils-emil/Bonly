@@ -37,5 +37,6 @@
     <include file="config/liquibase/changelog/20201124003009_token_count.sql" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201124003020_add_age_to_user.sql" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201125003020_add_credit_to ad.sql" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201125003022_change_col_type_image.sql" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>
