@@ -1,0 +1,41 @@
+<div class="background-container">
+    <div class="bubble pos-lg-1">
+        <svg viewBox="0 0 120 120">
+            <circle cx="55" cy="55" r="50" class="dashed"/>
+            <foreignObject x="5" y="5" height="100px" width="100px">
+            </foreignObject>
+        </svg>
+    </div>
+
+    <div class="bubble pos-lg-2">
+        <svg viewBox="0 0 120 120">
+            <circle cx="55" cy="55" r="50" class="dashed"/>
+            <foreignObject x="5" y="5" height="100px" width="100px">
+            </foreignObject>
+        </svg>
+    </div>
+
+    <div class="bubble-sm pos-sm-1">
+        <svg class="svg-sm" viewBox="0 0 120 120">
+            <circle cx="55" cy="55" r="50" class="dashed"/>
+            <foreignObject x="5" y="5" height="100px" width="100px">
+            </foreignObject>
+        </svg>
+    </div>
+    <div class="bubble-sm pos-sm-2">
+        <svg class="svg-sm" viewBox="0 0 120 120">
+            <circle cx="55" cy="55" r="50" class="dashed"/>
+            <foreignObject x="5" y="5" height="100px" width="100px">
+            </foreignObject>
+        </svg>
+    </div>
+
+    <div class="arrow-up arrow-pos-1"></div>
+    <div class="arrow-down arrow-pos-2"></div>
+    <div class="arrow-left arrow-pos-3"></div>
+    <div class="arrow-right arrow-pos-4"></div>
+
+</div>
+<div class="wrapper">
+    <div *ngFor="let i of numbers" [className]="'confetti-' + i"></div>
+</div>

@@ -1,0 +1,184 @@
+.background-container {
+  position: absolute;
+}
+
+.bubble {
+  position: relative;
+  left: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: #bfcaff;
+  border-radius: 50%;
+}
+
+.bubble-sm {
+  position: relative;
+  left: 2rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  background-color: #bfcaff;
+  border-radius: 50%;
+}
+
+svg {
+  position: relative;
+  left: -0.5rem;
+  bottom: 0.5rem;
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+circle {
+  fill: transparent;
+  stroke: green;
+  stroke-width: 3;
+}
+
+.solid {
+  stroke-dasharray: none;
+}
+
+.dashed {
+  stroke-dasharray: 8, 8.5;
+}
+
+.dotted {
+  stroke-dasharray: 0.1, 12.5;
+  stroke-linecap: round;
+}
+
+.svg-sm {
+  position: relative;
+  left: -0.25rem;
+  bottom: 0.25rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+.pos-lg-1 {
+  position: absolute;
+  left: 25vw;
+  top: 5vh;
+}
+
+.pos-lg-2 {
+  position: absolute;
+  left: -1rem;
+  top: 20vh;
+}
+
+.pos-sm-1 {
+  position: absolute;
+  left: 60vw;
+  top: 7rem;
+}
+
+.pos-sm-2 {
+  position: absolute;
+  top: 0;
+  left: 95vw;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid #ffc702;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #ffc702;
+}
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #ffc702;
+}
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-right: 12px solid #ffc702;
+}
+
+.arrow-pos-1 {
+  position: absolute;
+  left: 60vw;
+  top: 10vw;
+}
+
+.arrow-pos-2 {
+  position: absolute;
+  left: 90vw;
+  top: 20vw;
+}
+
+.arrow-pos-3 {
+  position: absolute;
+  left: 65vw;
+  top: 42vw;
+}
+
+.arrow-pos-4 {
+  position: absolute;
+  left: 20vw;
+  top: 23vw;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.wrapper {
+  position: absolute;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+[class|='confetti'] {
+  position: absolute;
+}
+
+$colors: (#d13447, #ffbf00, #263672);
+
+@for $i from 0 through 20 {
+  $w: random(8);
+  $l: random(100);
+  .confetti-#{$i} {
+    width: #{$w + 4}px;
+    height: #{($w + 4) * 0.4}px;
+    background-color: nth($colors, random(3));
+    left: unquote($l + '%');
+    top: -10%;
+    opacity: random() + 0.5;
+    transform: rotate(#{random() * 360}deg);
+    animation: drop-#{$i} unquote(4 + random() + 's') unquote(random() + 's') infinite ease-in-out;
+    animation-delay: #{($i * 250) + 500}+ 'ms';
+  }
+
+  @keyframes drop-#{$i} {
+    0% {
+      top: -20vh;
+      left: unquote($l + random(15) + '%');
+    }
+    90% {
+      opacity: 0;
+    }
+    100% {
+      top: 40%;
+      left: unquote($l + random(15) + '%');
+      opacity: 0;
+    }
+  }
+}

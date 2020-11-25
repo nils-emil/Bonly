@@ -1,0 +1,37 @@
+<div class="content-container">
+    <div class="flex-center">
+        <div class="content-header">
+            <h4 class="modal-title">... a few more questions</h4>
+        </div>
+    </div>
+    <div>
+        <div class="row justify-content-center block-container">
+            <form name="form" role="form" (ngSubmit)="save()" *ngIf="account">
+                <div class="flex-row">
+                    <h6 class="col-3 pl-0">Age</h6>
+                    <div class="col-6 pl-0 mt-2 ">
+                        <div class="flex-between my-4">
+                            <div class="select">
+                                <select [(ngModel)]="account.age" name="age" id="age">
+                                    <option *ngFor="let age of ages" [value]="age">{{age}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-row wide-input gender-choice-button-container">
+                    <button mat-raised-button [disabled]="account.gender === 'MALE'" (click)="selectGender('MALE')">
+                        MALE
+                    </button>
+                    <button mat-raised-button [disabled]="account.gender === 'FEMALE'" (click)="selectGender('FEMALE')">
+                        FEMALE
+                    </button>
+                </div>
+            </form>
+            <div class="p-4">
+            </div>
+        </div>
+    </div>
+</div>
+
