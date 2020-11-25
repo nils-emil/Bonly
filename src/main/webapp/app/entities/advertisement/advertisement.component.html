@@ -25,9 +25,7 @@
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="bonlyApp.advertisement.activeFrom">Active From</span></th>
                     <th scope="col" ><span jhiTranslate="bonlyApp.advertisement.activeUntill">Active Untill</span></th>
-                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisement.image">Image</span></th>
                     <th scope="col" ><span jhiTranslate="bonlyApp.advertisement.question">Question</span></th>
-                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisement.correctAnswer">Correct Answer</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -36,16 +34,7 @@
                     <td><a [routerLink]="['/advertisement', advertisement.id, 'view']">{{ advertisement.id }}</a></td>
                     <td>{{ advertisement.activeFrom | date:'medium' }}</td>
                     <td>{{ advertisement.activeUntill | date:'medium' }}</td>
-                    <td>
-                        <a *ngIf="advertisement.image" (click)="openFile(advertisement.imageContentType, advertisement.image)" jhiTranslate="entity.action.open">open</a>
-                        <span *ngIf="advertisement.image">{{ advertisement.imageContentType }}, {{ byteSize(advertisement.image) }}</span>
-                    </td>
                     <td>{{ advertisement.question }}</td>
-                    <td>
-                        <div *ngIf="advertisement.correctAnswerId">
-                            <a [routerLink]="['/advertisement-answers', advertisement.correctAnswerId , 'view']" >{{ advertisement.correctAnswerId }}</a>
-                        </div>
-                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

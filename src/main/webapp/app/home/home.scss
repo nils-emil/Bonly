@@ -21,3 +21,52 @@ Main page styles
     background-size: contain;
   }
 }
+
+.center {
+  text-align: center;
+}
+
+.bonly-logo {
+  font-size: 9rem;
+  color: #000000;
+  font-family: Rubik Mono One, Montserrat, 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  display: block;
+  font-style: normal;
+}
+
+.bonly-logo-container {
+  margin-top: 6rem;
+  animation: fadein 1s;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.bonly-buttom-container {
+  animation: fadein 0.5s;
+  position: fixed;
+  bottom: 3rem;
+  width: 100vw;
+}
+
+.bonly-text {
+  font-size: 1rem;
+  color: #000000;
+  font-family: Rosario, Montserrat, 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  position: relative;
+  bottom: 3rem;
+  letter-spacing: 12px;
+  margin-left: 0.75rem;
+}

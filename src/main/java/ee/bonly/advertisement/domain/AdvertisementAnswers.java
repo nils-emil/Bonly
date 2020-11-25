@@ -1,5 +1,6 @@
 package ee.bonly.advertisement.domain;
 
+import liquibase.pro.packaged.B;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -25,11 +26,8 @@ public class AdvertisementAnswers implements Serializable {
     @Column(name = "answer")
     private String answer;
 
-    @Column(name = "city")
-    private String city;
-
-    @Column(name = "state_province")
-    private String stateProvince;
+    @Column(name = "correct")
+    private Boolean correct;
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -55,32 +53,6 @@ public class AdvertisementAnswers implements Serializable {
 
     public void setAnswer(String answer) {
         this.answer = answer;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public AdvertisementAnswers city(String city) {
-        this.city = city;
-        return this;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStateProvince() {
-        return stateProvince;
-    }
-
-    public AdvertisementAnswers stateProvince(String stateProvince) {
-        this.stateProvince = stateProvince;
-        return this;
-    }
-
-    public void setStateProvince(String stateProvince) {
-        this.stateProvince = stateProvince;
     }
 
     public Advertisement getAdvertisement() {
@@ -119,8 +91,15 @@ public class AdvertisementAnswers implements Serializable {
         return "AdvertisementAnswers{" +
             "id=" + getId() +
             ", answer='" + getAnswer() + "'" +
-            ", city='" + getCity() + "'" +
-            ", stateProvince='" + getStateProvince() + "'" +
+            ", correct='" + getCorrect() + "'" +
             "}";
+    }
+
+    public Boolean getCorrect() {
+        return correct;
+    }
+
+    public void setCorrect(Boolean correct) {
+        this.correct = correct;
     }
 }

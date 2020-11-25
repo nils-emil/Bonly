@@ -6,18 +6,15 @@ import java.io.Serializable;
  * A DTO for the {@link ee.bonly.advertisement.domain.AdvertisementAnswers} entity.
  */
 public class AdvertisementAnswersDTO implements Serializable {
-    
+
     private Long id;
 
     private String answer;
 
-    private String city;
-
-    private String stateProvince;
-
+    private Boolean correct;
 
     private Long advertisementId;
-    
+
     public Long getId() {
         return id;
     }
@@ -32,22 +29,6 @@ public class AdvertisementAnswersDTO implements Serializable {
 
     public void setAnswer(String answer) {
         this.answer = answer;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStateProvince() {
-        return stateProvince;
-    }
-
-    public void setStateProvince(String stateProvince) {
-        this.stateProvince = stateProvince;
     }
 
     public Long getAdvertisementId() {
@@ -81,9 +62,16 @@ public class AdvertisementAnswersDTO implements Serializable {
         return "AdvertisementAnswersDTO{" +
             "id=" + getId() +
             ", answer='" + getAnswer() + "'" +
-            ", city='" + getCity() + "'" +
-            ", stateProvince='" + getStateProvince() + "'" +
+            ", correct='" + getCorrect() + "'" +
             ", advertisementId=" + getAdvertisementId() +
             "}";
+    }
+
+    public Boolean getCorrect() {
+        return correct;
+    }
+
+    public void setCorrect(Boolean correct) {
+        this.correct = correct;
     }
 }

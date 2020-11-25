@@ -6,11 +6,13 @@ import { NgJhipsterModule } from 'ng-jhipster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   exports: [
     FormsModule,
     CommonModule,
+    ImageCropperModule,
     NgbModule,
     NgJhipsterModule,
     InfiniteScrollModule,

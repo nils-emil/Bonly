@@ -3,13 +3,14 @@ package ee.bonly.advertisement.service.dto;
 import java.time.Instant;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Lob;
 
 /**
  * A DTO for the {@link ee.bonly.advertisement.domain.Advertisement} entity.
  */
 public class AdvertisementDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
@@ -18,17 +19,16 @@ public class AdvertisementDTO implements Serializable {
     @NotNull
     private Instant activeUntill;
 
-    
-    @Lob
-    private byte[] image;
+    private String image;
+
+    private List<AdvertisementAnswersDTO> advertisementAnswers;
 
     private String imageContentType;
     @NotNull
     private String question;
 
+    private Long creditCount;
 
-    private Long correctAnswerId;
-    
     public Long getId() {
         return id;
     }
@@ -53,11 +53,11 @@ public class AdvertisementDTO implements Serializable {
         this.activeUntill = activeUntill;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -75,14 +75,6 @@ public class AdvertisementDTO implements Serializable {
 
     public void setQuestion(String question) {
         this.question = question;
-    }
-
-    public Long getCorrectAnswerId() {
-        return correctAnswerId;
-    }
-
-    public void setCorrectAnswerId(Long advertisementAnswersId) {
-        this.correctAnswerId = advertisementAnswersId;
     }
 
     @Override
@@ -111,7 +103,22 @@ public class AdvertisementDTO implements Serializable {
             ", activeUntill='" + getActiveUntill() + "'" +
             ", image='" + getImage() + "'" +
             ", question='" + getQuestion() + "'" +
-            ", correctAnswerId=" + getCorrectAnswerId() +
             "}";
+    }
+
+    public List<AdvertisementAnswersDTO> getAdvertisementAnswers() {
+        return advertisementAnswers;
+    }
+
+    public void setAdvertisementAnswers(List<AdvertisementAnswersDTO> advertisementAnswers) {
+        this.advertisementAnswers = advertisementAnswers;
+    }
+
+    public Long getCreditCount() {
+        return creditCount;
+    }
+
+    public void setCreditCount(Long creditCount) {
+        this.creditCount = creditCount;
     }
 }

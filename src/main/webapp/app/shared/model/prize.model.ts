@@ -4,8 +4,11 @@ export interface IPrize {
   id?: number;
   registationStops?: Moment;
   winnerChosenAt?: Moment;
+  image?: any;
+  imageContentType?: string;
   creditsRequired?: number;
   winnerId?: number;
+  winnerLogin?: string;
 }
 
 export class Prize implements IPrize {
@@ -13,7 +16,10 @@ export class Prize implements IPrize {
     public id?: number,
     public registationStops?: Moment,
     public winnerChosenAt?: Moment,
+    public image?: any,
+    public imageContentType?: string,
     public creditsRequired?: number,
-    public winnerId?: number
+    public winnerId?: number,
+    public winnerLogin?: string
   ) {}
 }

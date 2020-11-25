@@ -59,7 +59,9 @@ export class AccountService {
             this.languageService.changeLanguage(langKey);
           }
 
-          if (account) {
+          if (account && (!account.gender || !account.age)) {
+            this.router.navigate(['/more-questions']);
+          } else if (account) {
             this.navigateToStoredUrl();
           }
         }),
@@ -71,6 +73,10 @@ export class AccountService {
 
   isAuthenticated(): boolean {
     return this.userIdentity !== null;
+  }
+
+  isAdmin(): boolean {
+    return this.userIdentity != null && this.userIdentity.authorities.includes('ROLE_ADMIN');
   }
 
   getAuthenticationState(): Observable<Account | null> {
@@ -85,6 +91,10 @@ export class AccountService {
     return this.http.get<Account>(SERVER_API_URL + 'api/account');
   }
 
+  public getAccount(): Observable<Account> {
+    return this.http.get<Account>(SERVER_API_URL + 'api/account');
+  }
+
   private navigateToStoredUrl(): void {
     // previousState can be set in the authExpiredInterceptor and in the userRouteAccessService
     // if login is successful, go to stored previousState and clear previousState
@@ -92,6 +102,8 @@ export class AccountService {
     if (previousUrl) {
       this.stateStorageService.clearUrl();
       this.router.navigateByUrl(previousUrl);
+    } else {
+      this.router.navigate(['']);
     }
   }
 }

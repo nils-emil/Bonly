@@ -8,6 +8,7 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * A Advertisement.
@@ -32,10 +33,14 @@ public class Advertisement implements Serializable {
     @Column(name = "active_untill", nullable = false)
     private Instant activeUntill;
 
-    
-    @Lob
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="advertisement")
+    private List<AdvertisementAnswers> advertisementAnswers;
+
     @Column(name = "image", nullable = false)
-    private byte[] image;
+    private String image;
+
+    @Column(name = "credit_count", nullable = false)
+    private Long creditCount;
 
     @Column(name = "image_content_type", nullable = false)
     private String imageContentType;
@@ -43,10 +48,6 @@ public class Advertisement implements Serializable {
     @NotNull
     @Column(name = "question", nullable = false)
     private String question;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private AdvertisementAnswers correctAnswer;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -83,16 +84,16 @@ public class Advertisement implements Serializable {
         this.activeUntill = activeUntill;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public Advertisement image(byte[] image) {
+    public Advertisement image(String  image) {
         this.image = image;
         return this;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -122,20 +123,6 @@ public class Advertisement implements Serializable {
         this.question = question;
     }
 
-    public AdvertisementAnswers getCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    public Advertisement correctAnswer(AdvertisementAnswers advertisementAnswers) {
-        this.correctAnswer = advertisementAnswers;
-        return this;
-    }
-
-    public void setCorrectAnswer(AdvertisementAnswers advertisementAnswers) {
-        this.correctAnswer = advertisementAnswers;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -163,5 +150,21 @@ public class Advertisement implements Serializable {
             ", imageContentType='" + getImageContentType() + "'" +
             ", question='" + getQuestion() + "'" +
             "}";
+    }
+
+    public List<AdvertisementAnswers> getAdvertisementAnswers() {
+        return advertisementAnswers;
+    }
+
+    public void setAdvertisementAnswers(List<AdvertisementAnswers> advertisementAnswers) {
+        this.advertisementAnswers = advertisementAnswers;
+    }
+
+    public Long getCreditCount() {
+        return creditCount;
+    }
+
+    public void setCreditCount(Long creditCount) {
+        this.creditCount = creditCount;
     }
 }

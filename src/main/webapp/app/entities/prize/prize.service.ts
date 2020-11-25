@@ -14,6 +14,7 @@ type EntityArrayResponseType = HttpResponse<IPrize[]>;
 @Injectable({ providedIn: 'root' })
 export class PrizeService {
   public resourceUrl = SERVER_API_URL + 'api/prizes';
+  public clientResourceUrl = SERVER_API_URL + 'api/client/prizes';
 
   constructor(protected http: HttpClient) {}
 

@@ -4,8 +4,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { JhiLanguageService } from 'ng-jhipster';
 
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/shared/constants/error.constants';
-import { LoginModalService } from 'app/core/login/login-modal.service';
 import { RegisterService } from './register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-register',
@@ -38,11 +38,12 @@ export class RegisterComponent implements AfterViewInit {
 
   constructor(
     private languageService: JhiLanguageService,
-    private loginModalService: LoginModalService,
     private registerService: RegisterService,
+    private router: Router,
     private fb: FormBuilder
   ) {}
 
+  // todo move to login component
   ngAfterViewInit(): void {
     if (this.login) {
       this.login.nativeElement.focus();
@@ -69,7 +70,7 @@ export class RegisterComponent implements AfterViewInit {
   }
 
   openLogin(): void {
-    this.loginModalService.open();
+    this.router.navigate(['/login']);
   }
 
   private processError(response: HttpErrorResponse): void {
@@ -80,5 +81,9 @@ export class RegisterComponent implements AfterViewInit {
     } else {
       this.error = true;
     }
+  }
+
+  backToHomePage(): void {
+    this.router.navigate(['']);
   }
 }

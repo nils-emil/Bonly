@@ -55,12 +55,17 @@
       "info": {
         "authenticated": {
           "prefix": "If you want to ",
-          "link": "sign in",
+          "link": "Log in",
           "suffix": ", you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\")."
         },
         "register": {
           "noaccount": "You don't have an account yet?",
-          "link": "Register a new account"
+          "link": "Create a new account"
+        },
+        "forgot": {
+          "password": {
+            "link": "Forgot password"
+          }
         }
       },
       "error": {
@@ -71,7 +76,7 @@
           "required": "Your password is required.",
           "minlength": "Your password is required to be at least 4 characters.",
           "maxlength": "Your password cannot be longer than 50 characters.",
-          "strength": "Password strength:"
+          "strength": "Password strength"
         },
         "confirmpassword": {
           "required": "Your confirmation password is required.",
@@ -109,6 +114,9 @@
     "detail": {
       "field": "Field",
       "value": "Value"
+    },
+    "save": {
+      "title": "Confirm save operation"
     },
     "delete": {
       "title": "Confirm delete operation"

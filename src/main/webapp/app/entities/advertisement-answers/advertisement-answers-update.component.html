@@ -18,15 +18,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bonlyApp.advertisementAnswers.city" for="field_city">City</label>
-                    <input type="text" class="form-control" name="city" id="field_city"
-                           formControlName="city"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bonlyApp.advertisementAnswers.stateProvince" for="field_stateProvince">State Province</label>
-                    <input type="text" class="form-control" name="stateProvince" id="field_stateProvince"
-                           formControlName="stateProvince"/>
+                    <label class="form-control-label" jhiTranslate="bonlyApp.advertisementAnswers.correct" for="field_correct">Correct</label>
+                    <select class="form-control" id="field_correct" name="correct" formControlName="correct">
+                        <option [ngValue]="true">True</option>
+                        <option [ngValue]="false">False</option>
+                    </select>
                 </div>
 
                 <div class="form-group">

@@ -12,7 +12,10 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface PrizeMapper extends EntityMapper<PrizeDTO, Prize> {
 
-    @Mapping(source = "winner.id", target = "winnerId")
+    @Mappings({
+        @Mapping(source = "winner.id", target = "winnerId"),
+        @Mapping(source = "winner.login", target = "winnerLogin"),
+    })
     PrizeDTO toDto(Prize prize);
 
     @Mapping(source = "winnerId", target = "winner")

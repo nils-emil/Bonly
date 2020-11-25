@@ -32,6 +32,15 @@ public class Prize implements Serializable {
     @Column(name = "credits_required")
     private Long creditsRequired;
 
+    @Column(name = "image", nullable = false)
+    private String image;
+
+    @Column(name = "image_content_type", nullable = false)
+    private String imageContentType;
+
+    @Column(name = "type")
+    private String type;
+
     @OneToOne
     @JoinColumn(unique = true)
     private User winner;
@@ -93,6 +102,22 @@ public class Prize implements Serializable {
         return this;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public void setWinner(User person) {
         this.winner = person;
     }
@@ -123,5 +148,13 @@ public class Prize implements Serializable {
             ", winnerChosenAt='" + getWinnerChosenAt() + "'" +
             ", creditsRequired=" + getCreditsRequired() +
             "}";
+    }
+
+    public String getImageContentType() {
+        return imageContentType;
+    }
+
+    public void setImageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
     }
 }

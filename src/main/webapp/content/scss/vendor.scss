@@ -11,4 +11,216 @@ eg $input-color: red;
 @import '~bootstrap/scss/bootstrap';
 @import '~bootswatch/dist/flatly/bootswatch';
 
+@import 'dropdown-select';
+@import 'material-theme';
+
 /* jhipster-needle-scss-add-vendor JHipster will add new css style */
+
+body {
+  font-family: Montserrat, 'Helvetica Neue', sans-serif;
+  width: 100vw;
+  overflow-x: hidden;
+  color: #000000;
+  font-weight: normal;
+}
+
+body,
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 400 !important;
+}
+
+.container-fluid {
+  padding: 0 !important;
+}
+
+.fill-width {
+  width: 100%;
+}
+
+.bonly-ui-button {
+  display: block;
+  max-width: 100vw;
+  margin: 0.25rem auto;
+  background-color: white;
+  border-radius: 2rem;
+  width: 20rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  text-align: left;
+  padding-left: 3rem;
+}
+
+.bonly-ui-button:focus {
+  outline: none;
+}
+
+.body-margin-for-footer {
+  margin-bottom: 4rem;
+}
+
+.card-image-award-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card-image-award-ribbon-container {
+  position: relative;
+}
+
+.card-image-award {
+  position: absolute;
+  right: 0;
+
+  &-ribbon {
+    width: 0;
+    height: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    border-bottom: 8rem solid #ffc702;
+    border-left: 12rem solid transparent;
+  }
+
+  &-date {
+    bottom: 4.45rem;
+    font-size: 80%;
+    margin-right: 0.5rem;
+  }
+
+  &-type {
+    bottom: 3.35rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+
+  &-text {
+    bottom: 2.3rem;
+    margin-right: 0.5rem;
+  }
+
+  &-hr {
+    bottom: 2rem;
+    height: 1px;
+    width: 6rem;
+    margin-right: 0.75rem;
+    background-color: #323232;
+  }
+
+  &-ticket-count {
+    display: flex;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.blurred {
+  filter: blur(5px);
+}
+
+.image-container {
+  max-width: 20rem;
+  display: flex;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+.object-fit-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content-container {
+  max-width: 100vw;
+}
+
+.wide-input {
+  width: 80vw;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation-arrows-container {
+  width: 80vw;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  left: -0.5rem;
+  margin: 0 auto;
+}
+
+.content-header {
+  width: 80vw;
+}
+
+.input-form-container {
+  position: relative;
+  max-width: 80vw;
+  bottom: 1rem;
+}
+
+.mat-form-field-wrapper {
+}
+
+#strength {
+  text-align: center;
+}
+
+#strengthBar {
+  padding: 0 !important;
+}
+
+.half-width-input {
+  width: 100%;
+}
+
+.w-80-vw {
+  width: 80vw;
+  max-width: 80vw;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.margin-center {
+  margin: 0 auto;
+}
+
+.my-account-header {
+  text-align: center;
+}
+
+.mat-icon-fix {
+  position: absolute;
+  right: 1rem;
+}
+
+.display-none {
+  display: none;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.question-header {
+  margin: 0 auto;
+  max-width: 20rem;
+  font-weight: normal;
+  text-align: left;
+}

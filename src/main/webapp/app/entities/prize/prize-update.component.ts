@@ -7,11 +7,17 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IPrize, Prize } from 'app/shared/model/prize.model';
 import { PrizeService } from './prize.service';
 import { IPerson } from 'app/shared/model/person.model';
 import { PersonService } from 'app/entities/person/person.service';
+import { AlertError } from '../../shared/alert/alert-error.model';
+import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } from 'ng-jhipster';
+import { BonlyImageCropperModalComponent } from '../advertisement/bonly-image-cropper/bonly-image-cropper-modal.component';
+import { UserService } from '../../core/user/user.service';
+import { IUser } from '../../core/user/user.model';
 
 @Component({
   selector: 'jhi-prize-update',
@@ -19,13 +25,15 @@ import { PersonService } from 'app/entities/person/person.service';
 })
 export class PrizeUpdateComponent implements OnInit {
   isSaving = false;
-  winners: IPerson[] = [];
+  winners: IUser[] = [];
 
   editForm = this.fb.group({
     id: [],
     registationStops: [],
     winnerChosenAt: [],
     creditsRequired: [],
+    image: [null, [Validators.required]],
+    imageContentType: [],
     winnerId: [],
   });
 
@@ -33,6 +41,10 @@ export class PrizeUpdateComponent implements OnInit {
     protected prizeService: PrizeService,
     protected personService: PersonService,
     protected activatedRoute: ActivatedRoute,
+    protected eventManager: JhiEventManager,
+    protected dataUtils: JhiDataUtils,
+    protected userService: UserService,
+    protected modalService: NgbModal,
     private fb: FormBuilder
   ) {}
 
@@ -46,8 +58,8 @@ export class PrizeUpdateComponent implements OnInit {
 
       this.updateForm(prize);
 
-      this.personService
-        .query({ filter: 'prize-is-null' })
+      this.userService
+        .query()
         .pipe(
           map((res: HttpResponse<IPerson[]>) => {
             return res.body || [];
@@ -70,12 +82,30 @@ export class PrizeUpdateComponent implements OnInit {
     });
   }
 
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
+  }
+
+  openFile(contentType = '', base64String: string): void {
+    this.dataUtils.openFile(contentType, base64String);
+  }
+
+  setFileData(event: any, field: string, isImage: boolean): void {
+    this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe(null, (err: JhiFileLoadError) => {
+      this.eventManager.broadcast(
+        new JhiEventWithContent<AlertError>('bonlyApp.error', { ...err, key: 'error.file.' + err.key })
+      );
+    });
+  }
+
   updateForm(prize: IPrize): void {
     this.editForm.patchValue({
       id: prize.id,
       registationStops: prize.registationStops ? prize.registationStops.format(DATE_TIME_FORMAT) : null,
       winnerChosenAt: prize.winnerChosenAt ? prize.winnerChosenAt.format(DATE_TIME_FORMAT) : null,
       creditsRequired: prize.creditsRequired,
+      image: prize.image,
+      imageContentType: prize.imageContentType,
       winnerId: prize.winnerId,
     });
   }
@@ -104,6 +134,8 @@ export class PrizeUpdateComponent implements OnInit {
       winnerChosenAt: this.editForm.get(['winnerChosenAt'])!.value
         ? moment(this.editForm.get(['winnerChosenAt'])!.value, DATE_TIME_FORMAT)
         : undefined,
+      image: this.editForm.get(['image'])!.value,
+      imageContentType: this.editForm.get(['imageContentType'])!.value,
       creditsRequired: this.editForm.get(['creditsRequired'])!.value,
       winnerId: this.editForm.get(['winnerId'])!.value,
     };
@@ -127,5 +159,15 @@ export class PrizeUpdateComponent implements OnInit {
 
   trackById(index: number, item: IPerson): any {
     return item.id;
+  }
+
+  openImageModal(): void {
+    const modalRef = this.modalService.open(BonlyImageCropperModalComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.croppedImage = this.editForm.get(['image'])!.value;
+    modalRef.componentInstance.widthRatio = 9;
+    modalRef.componentInstance.heightRatio = 12;
+    this.eventManager.subscribe('croppedImageSelected', () => {
+      this.editForm.patchValue({ image: modalRef.componentInstance.croppedImage });
+    });
   }
 }

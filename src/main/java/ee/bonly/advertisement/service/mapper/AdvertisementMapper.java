@@ -12,12 +12,6 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {AdvertisementAnswersMapper.class})
 public interface AdvertisementMapper extends EntityMapper<AdvertisementDTO, Advertisement> {
 
-    @Mapping(source = "correctAnswer.id", target = "correctAnswerId")
-    AdvertisementDTO toDto(Advertisement advertisement);
-
-    @Mapping(source = "correctAnswerId", target = "correctAnswer")
-    Advertisement toEntity(AdvertisementDTO advertisementDTO);
-
     default Advertisement fromId(Long id) {
         if (id == null) {
             return null;

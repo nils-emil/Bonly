@@ -22,12 +22,14 @@ public class UserAdvertisementAnswers implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "state_province")
-    private String stateProvince;
-
     @OneToOne
     @JoinColumn(unique = true)
     private User user;
+
+//    TODO rename Answers to Answer
+    @OneToOne
+    @JoinColumn(unique = true)
+    private AdvertisementAnswers advertisementAnswer;
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -40,19 +42,6 @@ public class UserAdvertisementAnswers implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getStateProvince() {
-        return stateProvince;
-    }
-
-    public UserAdvertisementAnswers stateProvince(String stateProvince) {
-        this.stateProvince = stateProvince;
-        return this;
-    }
-
-    public void setStateProvince(String stateProvince) {
-        this.stateProvince = stateProvince;
     }
 
     public User getUser() {
@@ -103,7 +92,14 @@ public class UserAdvertisementAnswers implements Serializable {
     public String toString() {
         return "UserAdvertisementAnswers{" +
             "id=" + getId() +
-            ", stateProvince='" + getStateProvince() + "'" +
             "}";
+    }
+
+    public AdvertisementAnswers getAdvertisementAnswer() {
+        return advertisementAnswer;
+    }
+
+    public void setAdvertisementAnswer(AdvertisementAnswers advertisementAnswer) {
+        this.advertisementAnswer = advertisementAnswer;
     }
 }

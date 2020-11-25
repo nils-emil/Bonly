@@ -40,4 +40,8 @@ public interface AdvertisementService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    AdvertisementDTO findOneUnansweredAdvertisementByUserid();
+
+    void saveAnswerToQuestion(Long questionId, Long answerId);
 }

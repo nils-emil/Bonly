@@ -3,6 +3,7 @@ package ee.bonly.advertisement.service.dto;
 import ee.bonly.advertisement.config.Constants;
 
 import ee.bonly.advertisement.domain.Authority;
+import ee.bonly.advertisement.domain.Gender;
 import ee.bonly.advertisement.domain.User;
 
 import javax.validation.constraints.*;
@@ -28,12 +29,18 @@ public class UserDTO {
     @Size(max = 50)
     private String lastName;
 
+    private String age;
+
+    private Gender gender;
+
     @Email
     @Size(min = 5, max = 254)
     private String email;
 
     @Size(max = 256)
     private String imageUrl;
+
+    private Long creditCount;
 
     private boolean activated = false;
 
@@ -60,9 +67,12 @@ public class UserDTO {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();
+        this.gender = user.getGender() == null ? null : Gender.valueOf(user.getGender());
         this.activated = user.getActivated();
         this.imageUrl = user.getImageUrl();
+        this.creditCount = user.getCreditsCount();
         this.langKey = user.getLangKey();
+        this.age = user.getAge();
         this.createdBy = user.getCreatedBy();
         this.createdDate = user.getCreatedDate();
         this.lastModifiedBy = user.getLastModifiedBy();
@@ -176,6 +186,14 @@ public class UserDTO {
         this.authorities = authorities;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     // prettier-ignore
     @Override
     public String toString() {
@@ -193,5 +211,21 @@ public class UserDTO {
             ", lastModifiedDate=" + lastModifiedDate +
             ", authorities=" + authorities +
             "}";
+    }
+
+    public Long getCreditCount() {
+        return creditCount;
+    }
+
+    public void setCreditCount(Long creditCount) {
+        this.creditCount = creditCount;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 }

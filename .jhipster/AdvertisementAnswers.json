@@ -6,12 +6,8 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "city",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "stateProvince",
-      "fieldType": "String"
+      "fieldName": "correct",
+      "fieldType": "Boolean"
     }
   ],
   "relationships": [

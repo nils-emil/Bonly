@@ -17,22 +17,13 @@
                     <span>{{ advertisement.activeUntill }}</span>
                 </dd>
                 <dt><span jhiTranslate="bonlyApp.advertisement.image">Image</span></dt>
-                <dd>
-                    <div *ngIf="advertisement.image">
-                        <a (click)="openFile(advertisement.imageContentType, advertisement.image)" jhiTranslate="entity.action.open">open</a>
-                        {{ advertisement.imageContentType }}, {{ byteSize(advertisement.image) }}
-                    </div>
-                </dd>
+                <br>
+                <img [src]="advertisement.image" />
                 <dt><span jhiTranslate="bonlyApp.advertisement.question">Question</span></dt>
                 <dd>
                     <span>{{ advertisement.question }}</span>
                 </dd>
-                <dt><span jhiTranslate="bonlyApp.advertisement.correctAnswer">Correct Answer</span></dt>
-                <dd>
-                    <div *ngIf="advertisement.correctAnswerId">
-                        <a [routerLink]="['/advertisement-answers', advertisement.correctAnswerId, 'view']">{{ advertisement.correctAnswerId }}</a>
-                    </div>
-                </dd>
+
             </dl>
 
             <button type="submit"

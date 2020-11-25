@@ -31,6 +31,9 @@
                            formControlName="creditsRequired"/>
                 </div>
 
+                <button type="button" (click)="openImageModal()">Add or change image</button>
+                <br>
+                <img [src]="editForm.get('image')!.value" />
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="bonlyApp.prize.winner" for="field_winner">Winner</label>
                     <select class="form-control" id="field_winner" name="winner" formControlName="winnerId">

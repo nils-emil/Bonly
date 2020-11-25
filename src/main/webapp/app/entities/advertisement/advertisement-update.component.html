@@ -45,27 +45,20 @@
                     </div>
                 </div>
 
+
+                <button type="button" (click)="openImageModal()">Add or change image</button>
+                <br>
+                <img [src]="editForm.get('image')!.value" />
+
+
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bonlyApp.advertisement.image" for="field_image">Image</label>
-                    <div>
-                        <div *ngIf="editForm.get('image')!.value" class="form-text text-danger clearfix">
-                            <a class="pull-left" (click)="openFile(editForm.get('imageContentType')!.value, editForm.get('image')!.value)" jhiTranslate="entity.action.open">open</a><br>
-                            <span class="pull-left">{{ editForm.get('imageContentType')!.value }}, {{ byteSize(editForm.get('image')!.value) }}</span>
-                            <button type="button" (click)="editForm.patchValue({image: null});editForm.patchValue({imageContentType: null});"
-                                    class="btn btn-secondary btn-xs pull-right">
-                                <fa-icon icon="times"></fa-icon>
-                            </button>
-                        </div>
-                        <input type="file" id="file_image" (change)="setFileData($event, 'image', false)" jhiTranslate="entity.action.addblob"/>
-                    </div>
-                    <input type="hidden" class="form-control" name="image" id="field_image"
-                           formControlName="image"/>
-                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
-                           formControlName="imageContentType" />
-                    <div *ngIf="editForm.get('image')!.invalid && (editForm.get('image')!.dirty || editForm.get('image')!.touched)">
+                    <label class="form-control-label"  for="field_creditCount">Amount of credit</label>
+                    <input type="number" class="form-control" name="creditCount" id="field_creditCount"
+                           formControlName="creditCount"/>
+                    <div *ngIf="editForm.get('creditCount')!.invalid && (editForm.get('creditCount')!.dirty || editForm.get('creditCount')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('image')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                               *ngIf="editForm.get('creditCount')?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
                         </small>
                     </div>
                 </div>
@@ -80,14 +73,6 @@
                         This field is required.
                         </small>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bonlyApp.advertisement.correctAnswer" for="field_correctAnswer">Correct Answer</label>
-                    <select class="form-control" id="field_correctAnswer" name="correctAnswer" formControlName="correctAnswerId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="advertisementAnswersOption.id" *ngFor="let advertisementAnswersOption of correctanswers; trackBy: trackById">{{ advertisementAnswersOption.id }}</option>
-                    </select>
                 </div>
             </div>
 

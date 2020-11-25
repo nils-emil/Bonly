@@ -22,8 +22,7 @@ export class AdvertisementAnswersUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     answer: [],
-    city: [],
-    stateProvince: [],
+    correct: [],
     advertisementId: [],
   });
 
@@ -66,8 +65,7 @@ export class AdvertisementAnswersUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: advertisementAnswers.id,
       answer: advertisementAnswers.answer,
-      city: advertisementAnswers.city,
-      stateProvince: advertisementAnswers.stateProvince,
+      correct: advertisementAnswers.correct,
       advertisementId: advertisementAnswers.advertisementId,
     });
   }
@@ -91,8 +89,7 @@ export class AdvertisementAnswersUpdateComponent implements OnInit {
       ...new AdvertisementAnswers(),
       id: this.editForm.get(['id'])!.value,
       answer: this.editForm.get(['answer'])!.value,
-      city: this.editForm.get(['city'])!.value,
-      stateProvince: this.editForm.get(['stateProvince'])!.value,
+      correct: this.editForm.get(['correct'])!.value,
       advertisementId: this.editForm.get(['advertisementId'])!.value,
     };
   }

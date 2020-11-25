@@ -29,5 +29,13 @@
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
     <include file="config/liquibase/changelog/20201121143008_change_person_entity_to_user.sql" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201121193008_add_gender_to_user_entity.sql" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201121203008_advertisement_and_asnwer_relation_changes.sql" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201122203008_user_advertisement_answer_changes.sql" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201123003008_prize_add_columns.sql" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201123003009_prize_image_content_type.sql" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201124003009_token_count.sql" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201124003020_add_age_to_user.sql" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201125003020_add_credit_to ad.sql" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

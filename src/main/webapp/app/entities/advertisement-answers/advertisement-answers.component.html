@@ -24,8 +24,7 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="bonlyApp.advertisementAnswers.answer">Answer</span></th>
-                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisementAnswers.city">City</span></th>
-                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisementAnswers.stateProvince">State Province</span></th>
+                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisementAnswers.correct">Correct</span></th>
                     <th scope="col" ><span jhiTranslate="bonlyApp.advertisementAnswers.advertisement">Advertisement</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -34,8 +33,7 @@
                 <tr *ngFor="let advertisementAnswers of advertisementAnswers ;trackBy: trackId">
                     <td><a [routerLink]="['/advertisement-answers', advertisementAnswers.id, 'view']">{{ advertisementAnswers.id }}</a></td>
                     <td>{{ advertisementAnswers.answer }}</td>
-                    <td>{{ advertisementAnswers.city }}</td>
-                    <td>{{ advertisementAnswers.stateProvince }}</td>
+                    <td>{{ advertisementAnswers.correct }}</td>
                     <td>
                         <div *ngIf="advertisementAnswers.advertisementId">
                             <a [routerLink]="['/advertisement', advertisementAnswers.advertisementId , 'view']" >{{ advertisementAnswers.advertisementId }}</a>

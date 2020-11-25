@@ -10,7 +10,7 @@
       "schematics": {
         "@schematics/angular:component": {
           "skipTests": true,
-          "style": "scss"
+          "style": "css"
         },
         "@schematics/angular:directive": {
           "skipTests": true

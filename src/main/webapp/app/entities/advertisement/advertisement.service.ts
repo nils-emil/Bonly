@@ -13,7 +13,8 @@ type EntityArrayResponseType = HttpResponse<IAdvertisement[]>;
 
 @Injectable({ providedIn: 'root' })
 export class AdvertisementService {
-  public resourceUrl = SERVER_API_URL + 'api/advertisements';
+  public resourceUrl = SERVER_API_URL + 'api/content';
+  public clientResourceUrl = SERVER_API_URL + 'api/client/content';
 
   constructor(protected http: HttpClient) {}
 
@@ -37,6 +38,12 @@ export class AdvertisementService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  findOneAdToShow(): Observable<EntityResponseType> {
+    return this.http
+      .get<IAdvertisement>(`${this.clientResourceUrl}/find-one`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
@@ -46,6 +53,10 @@ export class AdvertisementService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  chooseAnswer(questionId: any, answerId: any): Observable<any> {
+    return this.http.post(`${this.clientResourceUrl}/answer/${questionId}/${answerId}`, { questionId, answerId });
   }
 
   protected convertDateFromClient(advertisement: IAdvertisement): IAdvertisement {

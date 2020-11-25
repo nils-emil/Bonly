@@ -1,13 +1,19 @@
 package ee.bonly.advertisement.service.impl;
 
-import ee.bonly.advertisement.service.AdvertisementService;
 import ee.bonly.advertisement.domain.Advertisement;
+import ee.bonly.advertisement.domain.AdvertisementAnswers;
+import ee.bonly.advertisement.domain.User;
+import ee.bonly.advertisement.domain.UserAdvertisementAnswers;
 import ee.bonly.advertisement.repository.AdvertisementRepository;
+import ee.bonly.advertisement.repository.UserAdvertisementAnswersRepository;
+import ee.bonly.advertisement.repository.UserRepository;
+import ee.bonly.advertisement.security.SecurityUtils;
+import ee.bonly.advertisement.service.AdvertisementService;
+import ee.bonly.advertisement.service.UserService;
 import ee.bonly.advertisement.service.dto.AdvertisementDTO;
 import ee.bonly.advertisement.service.mapper.AdvertisementMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,11 +33,24 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     private final AdvertisementRepository advertisementRepository;
 
+    private final UserRepository userRepository;
+
+    private final UserService userService;
+
+    private final UserAdvertisementAnswersRepository userAdvertisementAnswersRepository;
+
     private final AdvertisementMapper advertisementMapper;
 
-    public AdvertisementServiceImpl(AdvertisementRepository advertisementRepository, AdvertisementMapper advertisementMapper) {
+    public AdvertisementServiceImpl(AdvertisementRepository advertisementRepository,
+                                    UserRepository userRepository,
+                                    UserService userService,
+                                    UserAdvertisementAnswersRepository userAdvertisementAnswersRepository,
+                                    AdvertisementMapper advertisementMapper) {
         this.advertisementRepository = advertisementRepository;
         this.advertisementMapper = advertisementMapper;
+        this.userAdvertisementAnswersRepository = userAdvertisementAnswersRepository;
+        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -51,6 +70,49 @@ public class AdvertisementServiceImpl implements AdvertisementService {
             .collect(Collectors.toCollection(LinkedList::new));
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public AdvertisementDTO findOneUnansweredAdvertisementByUserid() {
+        log.debug("Request to get all Advertisements");
+        Optional<String> currentUserLogin = SecurityUtils.getCurrentUserLogin();
+        if (currentUserLogin.isPresent()) {
+            String currentLogin = currentUserLogin.get();
+            Optional<User> oneByLogin = userRepository.findOneByLogin(currentLogin);
+            if (oneByLogin.isPresent()) {
+                Long id = oneByLogin.get().getId();
+                Advertisement randomUnseenAdvertisement = advertisementRepository
+                    .findOneUnansweredAdvertisementByUserid(id);
+                return advertisementMapper.toDto(randomUnseenAdvertisement);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void saveAnswerToQuestion(Long questionId, Long answerId) {
+        UserAdvertisementAnswers userAdvertisementAnswers = new UserAdvertisementAnswers();
+        Advertisement advertisement = new Advertisement();
+        advertisement.setId(questionId);
+        AdvertisementAnswers advertisementAnswers = new AdvertisementAnswers();
+        advertisementAnswers.setId(answerId);
+        Optional<String> currentUserLogin = SecurityUtils.getCurrentUserLogin();
+        if (currentUserLogin.isPresent()) {
+            String currentLogin = currentUserLogin.get();
+            Optional<User> oneByLogin = userRepository.findOneByLogin(currentLogin);
+            if (oneByLogin.isPresent()) {
+                Optional<Advertisement> byId = advertisementRepository.findById(questionId);
+                User user = oneByLogin.get();
+                userAdvertisementAnswers.setUser(user);
+                userAdvertisementAnswers.setAdvertisement(advertisement);
+                userAdvertisementAnswers.setAdvertisementAnswer(advertisementAnswers);
+                userAdvertisementAnswersRepository.save(userAdvertisementAnswers);
+                if (byId.isPresent()) {
+                    long newAmount = user.getCreditsCount() + byId.get().getCreditCount();
+                    userService.updateUserCreditCount(newAmount);
+                }
+            }
+        }
+    }
 
     @Override
     @Transactional(readOnly = true)

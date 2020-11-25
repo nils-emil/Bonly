@@ -11,7 +11,7 @@ type EntityArrayResponseType = HttpResponse<IAdvertisementAnswers[]>;
 
 @Injectable({ providedIn: 'root' })
 export class AdvertisementAnswersService {
-  public resourceUrl = SERVER_API_URL + 'api/advertisement-answers';
+  public resourceUrl = SERVER_API_URL + 'api/content-answers';
 
   constructor(protected http: HttpClient) {}
 

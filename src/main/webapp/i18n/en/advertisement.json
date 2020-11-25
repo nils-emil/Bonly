@@ -21,6 +21,9 @@
       "image": "Image",
       "question": "Question",
       "correctAnswer": "Correct Answer"
+    },
+    "advertisementAnswers": {
+      "correct": "Correct"
     }
   }
 }

@@ -8,12 +8,13 @@ import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } from 'ng-jhipster';
-
 import { IAdvertisement, Advertisement } from 'app/shared/model/advertisement.model';
 import { AdvertisementService } from './advertisement.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { IAdvertisementAnswers } from 'app/shared/model/advertisement-answers.model';
 import { AdvertisementAnswersService } from 'app/entities/advertisement-answers/advertisement-answers.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BonlyImageCropperModalComponent } from './bonly-image-cropper/bonly-image-cropper-modal.component';
 
 @Component({
   selector: 'jhi-advertisement-update',
@@ -29,14 +30,17 @@ export class AdvertisementUpdateComponent implements OnInit {
     activeUntill: [null, [Validators.required]],
     image: [null, [Validators.required]],
     imageContentType: [],
+    creditCount: [null, [Validators.required]],
     question: [null, [Validators.required]],
     correctAnswerId: [],
   });
+  croppedImage: any = '';
 
   constructor(
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected advertisementService: AdvertisementService,
+    protected modalService: NgbModal,
     protected advertisementAnswersService: AdvertisementAnswersService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -83,6 +87,7 @@ export class AdvertisementUpdateComponent implements OnInit {
       activeUntill: advertisement.activeUntill ? advertisement.activeUntill.format(DATE_TIME_FORMAT) : null,
       image: advertisement.image,
       imageContentType: advertisement.imageContentType,
+      creditCount: advertisement.creditCount,
       question: advertisement.question,
       correctAnswerId: advertisement.correctAnswerId,
     });
@@ -128,6 +133,7 @@ export class AdvertisementUpdateComponent implements OnInit {
         : undefined,
       imageContentType: this.editForm.get(['imageContentType'])!.value,
       image: this.editForm.get(['image'])!.value,
+      creditCount: this.editForm.get(['creditCount'])!.value,
       question: this.editForm.get(['question'])!.value,
       correctAnswerId: this.editForm.get(['correctAnswerId'])!.value,
     };
@@ -151,5 +157,15 @@ export class AdvertisementUpdateComponent implements OnInit {
 
   trackById(index: number, item: IAdvertisementAnswers): any {
     return item.id;
+  }
+
+  openImageModal(): void {
+    const modalRef = this.modalService.open(BonlyImageCropperModalComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.croppedImage = this.editForm.get(['image'])!.value;
+    modalRef.componentInstance.widthRatio = 4;
+    modalRef.componentInstance.heightRatio = 4;
+    this.eventManager.subscribe('croppedImageSelected', () => {
+      this.editForm.patchValue({ image: modalRef.componentInstance.croppedImage });
+    });
   }
 }

@@ -1,5 +1,6 @@
 package ee.bonly.advertisement.service.dto;
 
+import javax.persistence.Lob;
 import java.time.Instant;
 import java.io.Serializable;
 
@@ -7,7 +8,7 @@ import java.io.Serializable;
  * A DTO for the {@link ee.bonly.advertisement.domain.Prize} entity.
  */
 public class PrizeDTO implements Serializable {
-    
+
     private Long id;
 
     private Instant registationStops;
@@ -16,9 +17,16 @@ public class PrizeDTO implements Serializable {
 
     private Long creditsRequired;
 
+    private String image;
+
+    private String winnerLogin;
+
+    private String imageContentType;
+
+    private String type;
 
     private Long winnerId;
-    
+
     public Long getId() {
         return id;
     }
@@ -86,5 +94,37 @@ public class PrizeDTO implements Serializable {
             ", creditsRequired=" + getCreditsRequired() +
             ", winnerId=" + getWinnerId() +
             "}";
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getImageContentType() {
+        return imageContentType;
+    }
+
+    public void setImageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
+    }
+
+    public String getWinnerLogin() {
+        return winnerLogin;
+    }
+
+    public void setWinnerLogin(String winnerLogin) {
+        this.winnerLogin = winnerLogin;
     }
 }
