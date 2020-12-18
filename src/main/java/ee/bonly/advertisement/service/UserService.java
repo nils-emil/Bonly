@@ -8,9 +8,7 @@ import ee.bonly.advertisement.repository.UserRepository;
 import ee.bonly.advertisement.security.AuthoritiesConstants;
 import ee.bonly.advertisement.security.SecurityUtils;
 import ee.bonly.advertisement.service.dto.UserDTO;
-
 import io.github.jhipster.security.RandomUtil;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;

@@ -6,7 +6,6 @@ import { Account } from 'app/core/user/account.model';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'jhi-home',
   templateUrl: './home.component.html',
   styleUrls: ['home.scss'],
 })

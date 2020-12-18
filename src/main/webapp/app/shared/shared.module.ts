@@ -5,19 +5,11 @@ import { AlertComponent } from './alert/alert.component';
 import { AlertErrorComponent } from './alert/alert-error.component';
 import { LoginModalComponent } from './login/login.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
-import { BubbleBackendComponent } from 'app/client/bubble-backend/bubble-backend/bubble-backend.component';
 
 @NgModule({
   imports: [BonlySharedLibsModule],
-  declarations: [FindLanguageFromKeyPipe, AlertComponent, AlertErrorComponent, BubbleBackendComponent, HasAnyAuthorityDirective],
+  declarations: [FindLanguageFromKeyPipe, AlertComponent, AlertErrorComponent, HasAnyAuthorityDirective],
   entryComponents: [LoginModalComponent],
-  exports: [
-    BonlySharedLibsModule,
-    FindLanguageFromKeyPipe,
-    BubbleBackendComponent,
-    AlertComponent,
-    AlertErrorComponent,
-    HasAnyAuthorityDirective,
-  ],
+  exports: [BonlySharedLibsModule, FindLanguageFromKeyPipe, AlertComponent, AlertErrorComponent, HasAnyAuthorityDirective],
 })
 export class BonlySharedModule {}

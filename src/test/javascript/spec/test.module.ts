@@ -52,10 +52,7 @@ import { MockEventManager } from './helpers/mock-event-manager.service';
       provide: NgbModal,
       useValue: null,
     },
-    {
-      provide: SessionStorageService,
-      useValue: null,
-    },
+
     {
       provide: LocalStorageService,
       useValue: null,

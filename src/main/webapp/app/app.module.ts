@@ -16,13 +16,10 @@ import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModalComponent } from 'app/shared/login/login.component';
-import { AdvertisementChoosingComponent } from './client/advertisement-choosing/advertisement-choosing/advertisement-choosing.component';
 import { CommonModule } from '@angular/common';
-import { PrizesComponent } from 'app/client/prizes/prizes.component';
 import { PrizeRegistrationModalComponent } from './client/prize-registration-modal/prize-registration-modal.component';
 import { MoreAccountQuestionsComponent } from './client/more-account-questions/more-account-questions.component';
 import { MaterialModule } from 'app/material.module';
-import { ContactComponent } from 'app/client/contact/contact/contact.component';
 
 @NgModule({
   imports: [
@@ -38,9 +35,6 @@ import { ContactComponent } from 'app/client/contact/contact/contact.component';
     BonlyAppRoutingModule,
   ],
   declarations: [
-    AdvertisementChoosingComponent,
-    ContactComponent,
-    PrizesComponent,
     MainComponent,
     NavbarComponent,
     ErrorComponent,

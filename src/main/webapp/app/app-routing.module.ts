@@ -15,7 +15,7 @@ const LAYOUT_ROUTES = [...clientRoutes, ...errorRoute];
     RouterModule.forRoot(
       [
         {
-          path: 'admin',
+          path: '',
           data: {
             authorities: [Authority.ADMIN],
           },

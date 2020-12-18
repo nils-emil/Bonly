@@ -33,6 +33,7 @@ export class PrizeUpdateComponent implements OnInit {
     winnerChosenAt: [],
     creditsRequired: [],
     image: [null, [Validators.required]],
+    type: [null, [Validators.required]],
     imageContentType: [],
     winnerId: [],
   });
@@ -105,6 +106,7 @@ export class PrizeUpdateComponent implements OnInit {
       winnerChosenAt: prize.winnerChosenAt ? prize.winnerChosenAt.format(DATE_TIME_FORMAT) : null,
       creditsRequired: prize.creditsRequired,
       image: prize.image,
+      type: prize.type,
       imageContentType: prize.imageContentType,
       winnerId: prize.winnerId,
     });
@@ -135,6 +137,7 @@ export class PrizeUpdateComponent implements OnInit {
         ? moment(this.editForm.get(['winnerChosenAt'])!.value, DATE_TIME_FORMAT)
         : undefined,
       image: this.editForm.get(['image'])!.value,
+      type: this.editForm.get(['type'])!.value,
       imageContentType: this.editForm.get(['imageContentType'])!.value,
       creditsRequired: this.editForm.get(['creditsRequired'])!.value,
       winnerId: this.editForm.get(['winnerId'])!.value,
@@ -164,8 +167,8 @@ export class PrizeUpdateComponent implements OnInit {
   openImageModal(): void {
     const modalRef = this.modalService.open(BonlyImageCropperModalComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.croppedImage = this.editForm.get(['image'])!.value;
-    modalRef.componentInstance.widthRatio = 9;
-    modalRef.componentInstance.heightRatio = 12;
+    modalRef.componentInstance.widthRatio = 4;
+    modalRef.componentInstance.heightRatio = 4;
     this.eventManager.subscribe('croppedImageSelected', () => {
       this.editForm.patchValue({ image: modalRef.componentInstance.croppedImage });
     });

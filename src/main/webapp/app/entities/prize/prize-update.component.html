@@ -26,9 +26,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bonlyApp.prize.creditsRequired" for="field_creditsRequired">Credits Required</label>
+                    <label class="form-control-label" for="field_creditsRequired">Credits Required</label>
                     <input type="number" class="form-control" name="creditsRequired" id="field_creditsRequired"
                            formControlName="creditsRequired"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bonlyApp.prize.typeRequired" for="field_type">Type Required</label>
+                    <select class="form-control" id="field_type" name="type" formControlName="type">
+                        <option [ngValue]="'WEEKLY'">WEEKLY</option>
+                        <option [ngValue]="'MONTHLY'">MONTHLY</option>
+                        <option [ngValue]="'DAILY'">DAILY</option>
+                    </select>
                 </div>
 
                 <button type="button" (click)="openImageModal()">Add or change image</button>
