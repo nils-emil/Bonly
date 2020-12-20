@@ -1,10 +1,10 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="bonlyApp.advertisementAnswers.home.title">Advertisement Answers</span>
+        <span>Advertisement Answers</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-advertisement-answers" [routerLink]="['/advertisement-answers/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-advertisement-answers" [routerLink]="['/admin/advertisement-answers/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="bonlyApp.advertisementAnswers.home.createLabel">
+            <span>
             Create a new Advertisement Answers
             </span>
         </button>
@@ -15,50 +15,50 @@
     <jhi-alert></jhi-alert>
 
     <div class="alert alert-warning" id="no-result" *ngIf="advertisementAnswers?.length === 0">
-        <span jhiTranslate="bonlyApp.advertisementAnswers.home.notFound">No advertisementAnswers found</span>
+        <span>No advertisementAnswers found</span>
     </div>
 
     <div class="table-responsive" id="entities" *ngIf="advertisementAnswers && advertisementAnswers.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
-                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
-                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisementAnswers.answer">Answer</span></th>
-                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisementAnswers.correct">Correct</span></th>
-                    <th scope="col" ><span jhiTranslate="bonlyApp.advertisementAnswers.advertisement">Advertisement</span></th>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Answer</span></th>
+                    <th scope="col" ><span>Correct</span></th>
+                    <th scope="col" ><span>Advertisement</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let advertisementAnswers of advertisementAnswers ;trackBy: trackId">
-                    <td><a [routerLink]="['/advertisement-answers', advertisementAnswers.id, 'view']">{{ advertisementAnswers.id }}</a></td>
+                    <td><a [routerLink]="['/admin/advertisement-answers', advertisementAnswers.id, 'view']">{{ advertisementAnswers.id }}</a></td>
                     <td>{{ advertisementAnswers.answer }}</td>
                     <td>{{ advertisementAnswers.correct }}</td>
                     <td>
                         <div *ngIf="advertisementAnswers.advertisementId">
-                            <a [routerLink]="['/advertisement', advertisementAnswers.advertisementId , 'view']" >{{ advertisementAnswers.advertisementId }}</a>
+                            <a [routerLink]="['/admin/advertisement', advertisementAnswers.advertisementId , 'view']" >{{ advertisementAnswers.advertisementId }}</a>
                         </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
-                                    [routerLink]="['/advertisement-answers', advertisementAnswers.id, 'view']"
+                                    [routerLink]="['/admin/advertisement-answers', advertisementAnswers.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                <span class="d-none d-md-inline">View</span>
                             </button>
 
                             <button type="submit"
-                                    [routerLink]="['/advertisement-answers', advertisementAnswers.id, 'edit']"
+                                    [routerLink]="['/admin/advertisement-answers', advertisementAnswers.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                <span class="d-none d-md-inline">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(advertisementAnswers)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                <span class="d-none d-md-inline">Delete</span>
                             </button>
                         </div>
                     </td>

@@ -17,8 +17,6 @@ import { ErrorComponent } from './layouts/error/error.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModalComponent } from 'app/shared/login/login.component';
 import { CommonModule } from '@angular/common';
-import { PrizeRegistrationModalComponent } from './client/prize-registration-modal/prize-registration-modal.component';
-import { MoreAccountQuestionsComponent } from './client/more-account-questions/more-account-questions.component';
 import { MaterialModule } from 'app/material.module';
 
 @NgModule({
@@ -40,10 +38,8 @@ import { MaterialModule } from 'app/material.module';
     ErrorComponent,
     PageRibbonComponent,
     LoginModalComponent,
-    PrizeRegistrationModalComponent,
     ActiveMenuDirective,
     FooterComponent,
-    MoreAccountQuestionsComponent,
   ],
   bootstrap: [MainComponent],
   exports: [],

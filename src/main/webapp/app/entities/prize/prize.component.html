@@ -1,10 +1,10 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="bonlyApp.prize.home.title">Prizes</span>
+        <span>Prizes</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-prize" [routerLink]="['/prize/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-prize" [routerLink]="['/admin/prize/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="bonlyApp.prize.home.createLabel">
+            <span>
             Create a new Prize
             </span>
         </button>
@@ -15,52 +15,48 @@
     <jhi-alert></jhi-alert>
 
     <div class="alert alert-warning" id="no-result" *ngIf="prizes?.length === 0">
-        <span jhiTranslate="bonlyApp.prize.home.notFound">No prizes found</span>
+        <span>No prizes found</span>
     </div>
 
     <div class="table-responsive" id="entities" *ngIf="prizes && prizes.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="registationStops"><span jhiTranslate="bonlyApp.prize.registationStops">Registation Stops</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="winnerChosenAt"><span jhiTranslate="bonlyApp.prize.winnerChosenAt">Winner Chosen At</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="creditsRequired"><span jhiTranslate="bonlyApp.prize.creditsRequired">Credits Required</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="winnerId"><span jhiTranslate="bonlyApp.prize.winner">Winner</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="registationStops"><span>Registation Stops</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="creditsRequired"><span>Credits Required</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="winner"><span>Winner</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
                 <tr *ngFor="let prize of prizes ;trackBy: trackId">
-                    <td><a [routerLink]="['/prize', prize.id, 'view']">{{ prize.id }}</a></td>
+                    <td><a [routerLink]="['/admin/prize', prize.id, 'view']">{{ prize.id }}</a></td>
                     <td>{{ prize.registationStops | date:'medium' }}</td>
-                    <td>{{ prize.winnerChosenAt | date:'medium' }}</td>
                     <td>{{ prize.creditsRequired }}</td>
                     <td>
-                        <div *ngIf="prize.winnerId">
-                            <a [routerLink]="['/person', prize.winnerId , 'view']" >{{ prize.winnerId }}</a>
-                        </div>
+                        {{ prize.winner }}
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
-                                    [routerLink]="['/prize', prize.id, 'view']"
+                                    [routerLink]="['/admin/prize', prize.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                <span class="d-none d-md-inline">View</span>
                             </button>
 
                             <button type="submit"
-                                    [routerLink]="['/prize', prize.id, 'edit']"
+                                    [routerLink]="['/admin/prize', prize.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                <span class="d-none d-md-inline">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(prize)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                <span class="d-none d-md-inline">Delete</span>
                             </button>
                         </div>
                     </td>

@@ -15,18 +15,19 @@ const LAYOUT_ROUTES = [...clientRoutes, ...errorRoute];
     RouterModule.forRoot(
       [
         {
-          path: '',
+          path: 'admin',
           data: {
             authorities: [Authority.ADMIN],
           },
           canActivate: [UserRouteAccessService],
           loadChildren: () => import('./admin/admin-routing.module').then(m => m.AdminRoutingModule),
         },
-        {
-          path: 'account',
-          loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
-        },
         ...LAYOUT_ROUTES,
+        {
+          path: '',
+          redirectTo: 'login',
+          pathMatch: 'full',
+        },
       ],
       { enableTracing: DEBUG_INFO_ENABLED }
     ),

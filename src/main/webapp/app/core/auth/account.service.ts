@@ -59,9 +59,7 @@ export class AccountService {
             this.languageService.changeLanguage(langKey);
           }
 
-          if (account && (!account.gender || !account.age)) {
-            this.router.navigate(['/more-questions']);
-          } else if (account) {
+          if (account) {
             this.navigateToStoredUrl();
           }
         }),
@@ -103,7 +101,7 @@ export class AccountService {
       this.stateStorageService.clearUrl();
       this.router.navigateByUrl(previousUrl);
     } else {
-      this.router.navigate(['']);
+      this.router.navigate(['admin']);
     }
   }
 }

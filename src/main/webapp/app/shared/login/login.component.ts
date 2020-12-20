@@ -35,7 +35,7 @@ export class LoginModalComponent implements AfterViewInit {
       username: '',
       password: '',
     });
-    this.router.navigate(['']);
+    this.router.navigate(['/admin']);
   }
 
   login(): void {
@@ -54,6 +54,6 @@ export class LoginModalComponent implements AfterViewInit {
   }
 
   backToHomePage(): void {
-    this.router.navigate(['']);
+    this.router.navigate(['/admin']);
   }
 }

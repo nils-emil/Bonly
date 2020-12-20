@@ -52,7 +52,6 @@ export class PrizeService {
   protected convertDateFromClient(prize: IPrize): IPrize {
     const copy: IPrize = Object.assign({}, prize, {
       registationStops: prize.registationStops && prize.registationStops.isValid() ? prize.registationStops.toJSON() : undefined,
-      winnerChosenAt: prize.winnerChosenAt && prize.winnerChosenAt.isValid() ? prize.winnerChosenAt.toJSON() : undefined,
     });
     return copy;
   }
@@ -60,7 +59,6 @@ export class PrizeService {
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
       res.body.registationStops = res.body.registationStops ? moment(res.body.registationStops) : undefined;
-      res.body.winnerChosenAt = res.body.winnerChosenAt ? moment(res.body.winnerChosenAt) : undefined;
     }
     return res;
   }
@@ -69,7 +67,6 @@ export class PrizeService {
     if (res.body) {
       res.body.forEach((prize: IPrize) => {
         prize.registationStops = prize.registationStops ? moment(prize.registationStops) : undefined;
-        prize.winnerChosenAt = prize.winnerChosenAt ? moment(prize.winnerChosenAt) : undefined;
       });
     }
     return res;

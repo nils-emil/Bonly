@@ -1,45 +1,45 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-advertisement-heading" jhiTranslate="bonlyApp.advertisement.home.createOrEditLabel">Create or edit a Advertisement</h2>
+            <h2 id="jhi-advertisement-heading">Create or edit a Advertisement</h2>
 
             <div>
                 <jhi-alert-error></jhi-alert-error>
 
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <label for="id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bonlyApp.advertisement.activeFrom" for="field_activeFrom">Active From</label>
+                    <label class="form-control-label"  for="field_activeFrom">Active From</label>
                     <div class="d-flex">
                         <input id="field_activeFrom" type="datetime-local" class="form-control" name="activeFrom" formControlName="activeFrom" placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
                     <div *ngIf="editForm.get('activeFrom')!.invalid && (editForm.get('activeFrom')!.dirty || editForm.get('activeFrom')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('activeFrom')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('activeFrom')?.errors?.required">
                         This field is required.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.get('activeFrom')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            [hidden]="!editForm.get('activeFrom')?.errors?.ZonedDateTimelocal">
                             This field should be a date and time.
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bonlyApp.advertisement.activeUntill" for="field_activeUntill">Active Untill</label>
+                    <label class="form-control-label" for="field_activeUntill">Active Untill</label>
                     <div class="d-flex">
                         <input id="field_activeUntill" type="datetime-local" class="form-control" name="activeUntill" formControlName="activeUntill" placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
                     <div *ngIf="editForm.get('activeUntill')!.invalid && (editForm.get('activeUntill')!.dirty || editForm.get('activeUntill')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('activeUntill')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('activeUntill')?.errors?.required">
                         This field is required.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.get('activeUntill')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            [hidden]="!editForm.get('activeUntill')?.errors?.ZonedDateTimelocal">
                             This field should be a date and time.
                         </small>
                     </div>
@@ -57,19 +57,19 @@
                            formControlName="creditCount"/>
                     <div *ngIf="editForm.get('creditCount')!.invalid && (editForm.get('creditCount')!.dirty || editForm.get('creditCount')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('creditCount')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('creditCount')?.errors?.required">
                             This field is required.
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bonlyApp.advertisement.question" for="field_question">Question</label>
+                    <label class="form-control-label" for="field_question">Question</label>
                     <input type="text" class="form-control" name="question" id="field_question"
                            formControlName="question"/>
                     <div *ngIf="editForm.get('question')!.invalid && (editForm.get('question')!.dirty || editForm.get('question')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('question')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('question')?.errors?.required">
                         This field is required.
                         </small>
                     </div>
@@ -78,11 +78,11 @@
 
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
                 </button>
 
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
                 </button>
             </div>
         </form>

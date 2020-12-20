@@ -1,25 +1,25 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="advertisementAnswers">
-            <h2><span jhiTranslate="bonlyApp.advertisementAnswers.detail.title">Advertisement Answers</span> {{ advertisementAnswers.id }}</h2>
+            <h2><span>Advertisement Answers</span> {{ advertisementAnswers.id }}</h2>
 
             <hr>
 
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="bonlyApp.advertisementAnswers.answer">Answer</span></dt>
+                <dt><span>Answer</span></dt>
                 <dd>
                     <span>{{ advertisementAnswers.answer }}</span>
                 </dd>
-                <dt><span jhiTranslate="bonlyApp.advertisementAnswers.stateProvince">Correct</span></dt>
+                <dt><span>Correct</span></dt>
                 <dd>
                     <span>{{ advertisementAnswers.correct }}</span>
                 </dd>
-                <dt><span jhiTranslate="bonlyApp.advertisementAnswers.advertisement">Advertisement</span></dt>
+                <dt><span>Advertisement</span></dt>
                 <dd>
                     <div *ngIf="advertisementAnswers.advertisementId">
-                        <a [routerLink]="['/advertisement', advertisementAnswers.advertisementId, 'view']">{{ advertisementAnswers.advertisementId }}</a>
+                        <a [routerLink]="['/admin/advertisement', advertisementAnswers.advertisementId, 'view']">{{ advertisementAnswers.advertisementId }}</a>
                     </div>
                 </dd>
             </dl>
@@ -27,13 +27,13 @@
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
             </button>
 
             <button type="button"
-                    [routerLink]="['/advertisement-answers', advertisementAnswers.id, 'edit']"
+                    [routerLink]="['/admin/advertisement-answers', advertisementAnswers.id, 'edit']"
                     class="btn btn-primary">
-                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
             </button>
         </div>
     </div>

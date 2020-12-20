@@ -26,9 +26,6 @@ public class Prize implements Serializable {
     @Column(name = "registation_stops")
     private Instant registationStops;
 
-    @Column(name = "winner_chosen_at")
-    private Instant winnerChosenAt;
-
     @Column(name = "credits_required")
     private Long creditsRequired;
 
@@ -41,9 +38,11 @@ public class Prize implements Serializable {
     @Column(name = "type")
     private String type;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private User winner;
+    @Column(name = "winner")
+    private String winner;
+
+    @Column(name = "title")
+    private String title;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -67,19 +66,6 @@ public class Prize implements Serializable {
         this.registationStops = registationStops;
     }
 
-    public Instant getWinnerChosenAt() {
-        return winnerChosenAt;
-    }
-
-    public Prize winnerChosenAt(Instant winnerChosenAt) {
-        this.winnerChosenAt = winnerChosenAt;
-        return this;
-    }
-
-    public void setWinnerChosenAt(Instant winnerChosenAt) {
-        this.winnerChosenAt = winnerChosenAt;
-    }
-
     public Long getCreditsRequired() {
         return creditsRequired;
     }
@@ -93,11 +79,11 @@ public class Prize implements Serializable {
         this.creditsRequired = creditsRequired;
     }
 
-    public User getWinner() {
+    public String getWinner() {
         return winner;
     }
 
-    public Prize winner(User person) {
+    public Prize winner(String person) {
         this.winner = person;
         return this;
     }
@@ -118,7 +104,7 @@ public class Prize implements Serializable {
         this.image = image;
     }
 
-    public void setWinner(User person) {
+    public void setWinner(String person) {
         this.winner = person;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
@@ -145,7 +131,6 @@ public class Prize implements Serializable {
         return "Prize{" +
             "id=" + getId() +
             ", registationStops='" + getRegistationStops() + "'" +
-            ", winnerChosenAt='" + getWinnerChosenAt() + "'" +
             ", creditsRequired=" + getCreditsRequired() +
             "}";
     }
@@ -156,5 +141,13 @@ public class Prize implements Serializable {
 
     public void setImageContentType(String imageContentType) {
         this.imageContentType = imageContentType;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

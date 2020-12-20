@@ -1,6 +1,5 @@
 package ee.bonly.advertisement.service.dto;
 
-import javax.persistence.Lob;
 import java.time.Instant;
 import java.io.Serializable;
 
@@ -13,19 +12,17 @@ public class PrizeDTO implements Serializable {
 
     private Instant registationStops;
 
-    private Instant winnerChosenAt;
-
     private Long creditsRequired;
 
     private String image;
-
-    private String winnerLogin;
 
     private String imageContentType;
 
     private String type;
 
-    private Long winnerId;
+    private String winner;
+
+    private String title;
 
     public Long getId() {
         return id;
@@ -43,14 +40,6 @@ public class PrizeDTO implements Serializable {
         this.registationStops = registationStops;
     }
 
-    public Instant getWinnerChosenAt() {
-        return winnerChosenAt;
-    }
-
-    public void setWinnerChosenAt(Instant winnerChosenAt) {
-        this.winnerChosenAt = winnerChosenAt;
-    }
-
     public Long getCreditsRequired() {
         return creditsRequired;
     }
@@ -59,12 +48,12 @@ public class PrizeDTO implements Serializable {
         this.creditsRequired = creditsRequired;
     }
 
-    public Long getWinnerId() {
-        return winnerId;
+    public String getWinner() {
+        return winner;
     }
 
-    public void setWinnerId(Long personId) {
-        this.winnerId = personId;
+    public void setWinner(String personId) {
+        this.winner = personId;
     }
 
     @Override
@@ -90,9 +79,8 @@ public class PrizeDTO implements Serializable {
         return "PrizeDTO{" +
             "id=" + getId() +
             ", registationStops='" + getRegistationStops() + "'" +
-            ", winnerChosenAt='" + getWinnerChosenAt() + "'" +
             ", creditsRequired=" + getCreditsRequired() +
-            ", winnerId=" + getWinnerId() +
+            ", winner=" + getWinner() +
             "}";
     }
 
@@ -120,11 +108,11 @@ public class PrizeDTO implements Serializable {
         this.imageContentType = imageContentType;
     }
 
-    public String getWinnerLogin() {
-        return winnerLogin;
+    public String getTitle() {
+        return title;
     }
 
-    public void setWinnerLogin(String winnerLogin) {
-        this.winnerLogin = winnerLogin;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

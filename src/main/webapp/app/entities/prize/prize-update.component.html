@@ -1,30 +1,31 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-prize-heading" jhiTranslate="bonlyApp.prize.home.createOrEditLabel">Create or edit a Prize</h2>
+            <h2 id="jhi-prize-heading">Create or edit a Prize</h2>
 
             <div>
                 <jhi-alert-error></jhi-alert-error>
 
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bonlyApp.prize.registationStops" for="field_registationStops">Registation Stops</label>
-                    <div class="d-flex">
-                        <input id="field_registationStops" type="datetime-local" class="form-control" name="registationStops" formControlName="registationStops" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
+                    <label class="form-control-label"
+                           for="title">Title</label>
+                    <input type="text" class="form-control" name="titleRequired" id="title"
+                           formControlName="title"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bonlyApp.prize.winnerChosenAt" for="field_winnerChosenAt">Winner Chosen At</label>
+                    <label class="form-control-label" for="field_registationStops">Registation Stops</label>
                     <div class="d-flex">
-                        <input id="field_winnerChosenAt" type="datetime-local" class="form-control" name="winnerChosenAt" formControlName="winnerChosenAt" placeholder="YYYY-MM-DD HH:mm"/>
+                        <input id="field_registationStops" type="datetime-local" class="form-control"
+                               name="registationStops" formControlName="registationStops"
+                               placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" for="field_creditsRequired">Credits Required</label>
                     <input type="number" class="form-control" name="creditsRequired" id="field_creditsRequired"
@@ -32,7 +33,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bonlyApp.prize.typeRequired" for="field_type">Type Required</label>
+                    <label class="form-control-label">Type Required</label>
                     <select class="form-control" id="field_type" name="type" formControlName="type">
                         <option [ngValue]="'WEEKLY'">WEEKLY</option>
                         <option [ngValue]="'MONTHLY'">MONTHLY</option>
@@ -42,23 +43,23 @@
 
                 <button type="button" (click)="openImageModal()">Add or change image</button>
                 <br>
-                <img [src]="editForm.get('image')!.value" />
+                <img [src]="editForm.get('image')!.value"/>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bonlyApp.prize.winner" for="field_winner">Winner</label>
-                    <select class="form-control" id="field_winner" name="winner" formControlName="winnerId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="personOption.id" *ngFor="let personOption of winners; trackBy: trackById">{{ personOption.id }}</option>
-                    </select>
+                    <label class="form-control-label"
+                           for="winner">Winner</label>
+                    <input type="text" class="form-control" name="winnerRequired" id="winner"
+                           formControlName="winner"/>
                 </div>
             </div>
 
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
                 </button>
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                        class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
                 </button>
             </div>
         </form>

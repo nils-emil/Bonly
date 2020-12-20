@@ -6,10 +6,6 @@
       "fieldType": "Instant"
     },
     {
-      "fieldName": "winnerChosenAt",
-      "fieldType": "Instant"
-    },
-    {
       "fieldName": "creditsRequired",
       "fieldType": "Long"
     }

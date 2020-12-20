@@ -12,13 +12,10 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface PrizeMapper extends EntityMapper<PrizeDTO, Prize> {
 
-    @Mappings({
-        @Mapping(source = "winner.id", target = "winnerId"),
-        @Mapping(source = "winner.login", target = "winnerLogin"),
-    })
+    @Override
     PrizeDTO toDto(Prize prize);
 
-    @Mapping(source = "winnerId", target = "winner")
+    @Override
     Prize toEntity(PrizeDTO prizeDTO);
 
     default Prize fromId(Long id) {

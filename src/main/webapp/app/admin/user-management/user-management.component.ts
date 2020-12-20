@@ -61,7 +61,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   }
 
   transition(): void {
-    this.router.navigate(['./'], {
+    this.router.navigate(['./admin'], {
       relativeTo: this.activatedRoute.parent,
       queryParams: {
         page: this.page,

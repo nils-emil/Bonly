@@ -1,27 +1,27 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="userAdvertisementAnswers">
-            <h2><span jhiTranslate="bonlyApp.userAdvertisementAnswers.detail.title">User Advertisement Answers</span> {{ userAdvertisementAnswers.id }}</h2>
+            <h2><span>User Advertisement Answers</span> {{ userAdvertisementAnswers.id }}</h2>
 
             <hr>
 
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="bonlyApp.userAdvertisementAnswers.stateProvince">State Province</span></dt>
+                <dt><span>State Province</span></dt>
                 <dd>
                     <span>{{ userAdvertisementAnswers.stateProvince }}</span>
                 </dd>
-                <dt><span jhiTranslate="bonlyApp.userAdvertisementAnswers.user">User</span></dt>
+                <dt><span>User</span></dt>
                 <dd>
                     <div *ngIf="userAdvertisementAnswers.userId">
-                        <a [routerLink]="['/person', userAdvertisementAnswers.userId, 'view']">{{ userAdvertisementAnswers.userId }}</a>
+                        <a [routerLink]="['/admin/person', userAdvertisementAnswers.userId, 'view']">{{ userAdvertisementAnswers.userId }}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="bonlyApp.userAdvertisementAnswers.advertisement">Advertisement</span></dt>
+                <dt><span>Advertisement</span></dt>
                 <dd>
                     <div *ngIf="userAdvertisementAnswers.advertisementId">
-                        <a [routerLink]="['/advertisement', userAdvertisementAnswers.advertisementId, 'view']">{{ userAdvertisementAnswers.advertisementId }}</a>
+                        <a [routerLink]="['/admin/advertisement', userAdvertisementAnswers.advertisementId, 'view']">{{ userAdvertisementAnswers.advertisementId }}</a>
                     </div>
                 </dd>
             </dl>
@@ -29,13 +29,13 @@
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
             </button>
 
             <button type="button"
-                    [routerLink]="['/user-advertisement-answers', userAdvertisementAnswers.id, 'edit']"
+                    [routerLink]="['/admin/user-advertisement-answers', userAdvertisementAnswers.id, 'edit']"
                     class="btn btn-primary">
-                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
             </button>
         </div>
     </div>

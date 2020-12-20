@@ -21,7 +21,6 @@ entity UserAdvertisementAnswers {
 
 entity Prize {
 	registationStops Instant,
-    winnerChosenAt Instant,
 	creditsRequired Long,
 }
 

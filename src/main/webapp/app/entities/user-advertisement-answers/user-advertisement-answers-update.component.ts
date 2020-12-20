@@ -9,7 +9,6 @@ import { map } from 'rxjs/operators';
 import { IUserAdvertisementAnswers, UserAdvertisementAnswers } from 'app/shared/model/user-advertisement-answers.model';
 import { UserAdvertisementAnswersService } from './user-advertisement-answers.service';
 import { IPerson } from 'app/shared/model/person.model';
-import { PersonService } from 'app/entities/person/person.service';
 import { IAdvertisement } from 'app/shared/model/advertisement.model';
 import { AdvertisementService } from 'app/entities/advertisement/advertisement.service';
 
@@ -33,7 +32,6 @@ export class UserAdvertisementAnswersUpdateComponent implements OnInit {
 
   constructor(
     protected userAdvertisementAnswersService: UserAdvertisementAnswersService,
-    protected personService: PersonService,
     protected advertisementService: AdvertisementService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -42,28 +40,6 @@ export class UserAdvertisementAnswersUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ userAdvertisementAnswers }) => {
       this.updateForm(userAdvertisementAnswers);
-
-      this.personService
-        .query({ filter: 'useradvertisementanswers-is-null' })
-        .pipe(
-          map((res: HttpResponse<IPerson[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IPerson[]) => {
-          if (!userAdvertisementAnswers.userId) {
-            this.users = resBody;
-          } else {
-            this.personService
-              .find(userAdvertisementAnswers.userId)
-              .pipe(
-                map((subRes: HttpResponse<IPerson>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IPerson[]) => (this.users = concatRes));
-          }
-        });
 
       this.advertisementService
         .query({ filter: 'useradvertisementanswers-is-null' })

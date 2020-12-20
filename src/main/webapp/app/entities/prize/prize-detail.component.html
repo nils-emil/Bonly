@@ -1,43 +1,37 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="prize">
-            <h2><span jhiTranslate="bonlyApp.prize.detail.title">Prize</span> {{ prize.id }}</h2>
+            <h2><span>Prize</span> {{ prize.id }}</h2>
 
             <hr>
 
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="bonlyApp.prize.registationStops">Registation Stops</span></dt>
+                <dt><span>Registation Stops</span></dt>
                 <dd>
                     <span>{{ prize.registationStops }}</span>
                 </dd>
-                <dt><span jhiTranslate="bonlyApp.prize.winnerChosenAt">Winner Chosen At</span></dt>
-                <dd>
-                    <span>{{ prize.winnerChosenAt }}</span>
-                </dd>
-                <dt><span jhiTranslate="bonlyApp.prize.creditsRequired">Credits Required</span></dt>
+                <dt><span>Credits Required</span></dt>
                 <dd>
                     <span>{{ prize.creditsRequired }}</span>
                 </dd>
-                <dt><span jhiTranslate="bonlyApp.prize.winner">Winner</span></dt>
+                <dt><span >Winner</span></dt>
                 <dd>
-                    <div *ngIf="prize.winnerId">
-                        <a [routerLink]="['/person', prize.winnerId, 'view']">{{ prize.winnerId }}</a>
-                    </div>
+                    <span>{{ prize.winner }}</span>
                 </dd>
             </dl>
 
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
             </button>
 
             <button type="button"
-                    [routerLink]="['/prize', prize.id, 'edit']"
+                    [routerLink]="['/admin/prize', prize.id, 'edit']"
                     class="btn btn-primary">
-                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
             </button>
         </div>
     </div>

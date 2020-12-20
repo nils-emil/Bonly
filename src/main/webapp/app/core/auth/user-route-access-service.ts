@@ -38,7 +38,7 @@ export class UserRouteAccessService implements CanActivate {
         }
 
         this.stateStorageService.storeUrl(url);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/admin/home']);
         return false;
       })
     );
