@@ -41,5 +41,6 @@
     <include file="config/liquibase/changelog/20201125003024_image_type_not_null_drop.sql" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201220003024_winner_type_change.sql" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201220003025_title_col.sql" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201280003025_image_rework.sql" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

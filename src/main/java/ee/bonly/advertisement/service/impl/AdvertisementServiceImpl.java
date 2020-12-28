@@ -1,10 +1,8 @@
 package ee.bonly.advertisement.service.impl;
 
-import ee.bonly.advertisement.domain.Advertisement;
-import ee.bonly.advertisement.domain.AdvertisementAnswers;
-import ee.bonly.advertisement.domain.User;
-import ee.bonly.advertisement.domain.UserAdvertisementAnswers;
+import ee.bonly.advertisement.domain.*;
 import ee.bonly.advertisement.repository.AdvertisementRepository;
+import ee.bonly.advertisement.repository.ImageRepository;
 import ee.bonly.advertisement.repository.UserAdvertisementAnswersRepository;
 import ee.bonly.advertisement.repository.UserRepository;
 import ee.bonly.advertisement.security.SecurityUtils;
@@ -33,6 +31,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     private final AdvertisementRepository advertisementRepository;
 
+    private final ImageRepository imageRepository;
+
     private final UserRepository userRepository;
 
     private final UserService userService;
@@ -44,10 +44,12 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public AdvertisementServiceImpl(AdvertisementRepository advertisementRepository,
                                     UserRepository userRepository,
                                     UserService userService,
+                                    ImageRepository imageRepository,
                                     UserAdvertisementAnswersRepository userAdvertisementAnswersRepository,
                                     AdvertisementMapper advertisementMapper) {
         this.advertisementRepository = advertisementRepository;
         this.advertisementMapper = advertisementMapper;
+        this.imageRepository = imageRepository;
         this.userAdvertisementAnswersRepository = userAdvertisementAnswersRepository;
         this.userRepository = userRepository;
         this.userService = userService;
@@ -57,6 +59,11 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public AdvertisementDTO save(AdvertisementDTO advertisementDTO) {
         log.debug("Request to save Advertisement : {}", advertisementDTO);
         Advertisement advertisement = advertisementMapper.toEntity(advertisementDTO);
+        String base64Image = advertisementDTO.getImage().split(",")[1];
+        byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
+        Image image = new Image();
+        image.setContent(imageBytes);
+        imageRepository.save(image);
         advertisement = advertisementRepository.save(advertisement);
         return advertisementMapper.toDto(advertisement);
     }

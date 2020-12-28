@@ -36,14 +36,11 @@ public class Advertisement implements Serializable {
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="advertisement")
     private List<AdvertisementAnswers> advertisementAnswers;
 
-    @Column(name = "image", nullable = false)
-    private String image;
-
     @Column(name = "credit_count", nullable = false)
     private Long creditCount;
 
-    @Column(name = "image_content_type", nullable = false)
-    private String imageContentType;
+    @Column(name = "image_id", nullable = false)
+    private Long imageId;
 
     @NotNull
     @Column(name = "question", nullable = false)
@@ -84,32 +81,6 @@ public class Advertisement implements Serializable {
         this.activeUntill = activeUntill;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public Advertisement image(String  image) {
-        this.image = image;
-        return this;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getImageContentType() {
-        return imageContentType;
-    }
-
-    public Advertisement imageContentType(String imageContentType) {
-        this.imageContentType = imageContentType;
-        return this;
-    }
-
-    public void setImageContentType(String imageContentType) {
-        this.imageContentType = imageContentType;
-    }
-
     public String getQuestion() {
         return question;
     }
@@ -146,8 +117,6 @@ public class Advertisement implements Serializable {
             "id=" + getId() +
             ", activeFrom='" + getActiveFrom() + "'" +
             ", activeUntill='" + getActiveUntill() + "'" +
-            ", image='" + getImage() + "'" +
-            ", imageContentType='" + getImageContentType() + "'" +
             ", question='" + getQuestion() + "'" +
             "}";
     }
@@ -166,5 +135,13 @@ public class Advertisement implements Serializable {
 
     public void setCreditCount(Long creditCount) {
         this.creditCount = creditCount;
+    }
+
+    public Long getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(Long imageId) {
+        this.imageId = imageId;
     }
 }

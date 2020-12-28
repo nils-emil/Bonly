@@ -83,6 +83,21 @@ public class PrizeRegistrationServiceImpl implements PrizeRegistrationService {
 
     @Override
     @Transactional(readOnly = true)
+    public Integer findNumberOfTicketsRegisteredForPrize(Long prizeId) {
+        Optional<String> currentUserLogin = SecurityUtils.getCurrentUserLogin();
+        if (currentUserLogin.isPresent()) {
+            String currentLogin = currentUserLogin.get();
+            Optional<User> oneByLogin = userRepository.findOneByLogin(currentLogin);
+            if (oneByLogin.isPresent()) {
+                User user = oneByLogin.get();
+                return prizeRegistrationRepository.findCountByPrizeId(user.getId(), prizeId);
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<PrizeRegistrationDTO> findAll() {
         log.debug("Request to get all PrizeRegistrations");
         return prizeRegistrationRepository.findAll().stream()

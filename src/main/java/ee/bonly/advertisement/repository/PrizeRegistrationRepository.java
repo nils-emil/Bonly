@@ -11,4 +11,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface PrizeRegistrationRepository extends JpaRepository<PrizeRegistration, Long> {
+    @Query(value = "SELECT count(*) FROM prize_registration WHERE user_id = ?1 and prize_id = ?2"
+        , nativeQuery = true)
+    Integer findCountByPrizeId(Long userId, Long prizeId);
 }

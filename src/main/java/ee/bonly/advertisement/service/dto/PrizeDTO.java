@@ -16,6 +16,8 @@ public class PrizeDTO implements Serializable {
 
     private String image;
 
+    private String imageId;
+
     private String imageContentType;
 
     private String type;
@@ -114,5 +116,13 @@ public class PrizeDTO implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
     }
 }

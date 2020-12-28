@@ -1,6 +1,7 @@
 package ee.bonly.advertisement.service;
 
 import ee.bonly.advertisement.service.dto.PrizeRegistrationDTO;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,9 @@ public interface PrizeRegistrationService {
      * @return the persisted entity.
      */
     PrizeRegistrationDTO save(PrizeRegistrationDTO prizeRegistrationDTO);
+
+    @Transactional(readOnly = true)
+    Integer findNumberOfTicketsRegisteredForPrize(Long prizeId);
 
     /**
      * Get all the prizeRegistrations.

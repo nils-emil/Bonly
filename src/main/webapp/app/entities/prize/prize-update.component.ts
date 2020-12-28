@@ -4,7 +4,6 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,12 +11,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IPrize, Prize } from 'app/shared/model/prize.model';
 import { PrizeService } from './prize.service';
 import { IPerson } from 'app/shared/model/person.model';
-import { PersonService } from 'app/entities/person/person.service';
 import { AlertError } from '../../shared/alert/alert-error.model';
 import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } from 'ng-jhipster';
 import { BonlyImageCropperModalComponent } from '../advertisement/bonly-image-cropper/bonly-image-cropper-modal.component';
 import { UserService } from '../../core/user/user.service';
-import { IUser } from '../../core/user/user.model';
+import { PersonService } from '../person/person.service';
 
 @Component({
   selector: 'jhi-prize-update',
@@ -25,17 +23,16 @@ import { IUser } from '../../core/user/user.model';
 })
 export class PrizeUpdateComponent implements OnInit {
   isSaving = false;
-  winners: IUser[] = [];
 
   editForm = this.fb.group({
     id: [],
     registationStops: [],
-    winnerChosenAt: [],
     creditsRequired: [],
     image: [null, [Validators.required]],
     type: [null, [Validators.required]],
+    title: [null, [Validators.required]],
     imageContentType: [],
-    winnerId: [],
+    winner: [],
   });
 
   constructor(
@@ -54,32 +51,9 @@ export class PrizeUpdateComponent implements OnInit {
       if (!prize.id) {
         const today = moment().startOf('day');
         prize.registationStops = today;
-        prize.winnerChosenAt = today;
       }
 
       this.updateForm(prize);
-
-      this.userService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IPerson[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IPerson[]) => {
-          if (!prize.winnerId) {
-            this.winners = resBody;
-          } else {
-            this.personService
-              .find(prize.winnerId)
-              .pipe(
-                map((subRes: HttpResponse<IPerson>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IPerson[]) => (this.winners = concatRes));
-          }
-        });
     });
   }
 
@@ -103,12 +77,12 @@ export class PrizeUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: prize.id,
       registationStops: prize.registationStops ? prize.registationStops.format(DATE_TIME_FORMAT) : null,
-      winnerChosenAt: prize.winnerChosenAt ? prize.winnerChosenAt.format(DATE_TIME_FORMAT) : null,
       creditsRequired: prize.creditsRequired,
       image: prize.image,
       type: prize.type,
       imageContentType: prize.imageContentType,
-      winnerId: prize.winnerId,
+      winner: prize.winner,
+      title: prize.title,
     });
   }
 
@@ -133,14 +107,12 @@ export class PrizeUpdateComponent implements OnInit {
       registationStops: this.editForm.get(['registationStops'])!.value
         ? moment(this.editForm.get(['registationStops'])!.value, DATE_TIME_FORMAT)
         : undefined,
-      winnerChosenAt: this.editForm.get(['winnerChosenAt'])!.value
-        ? moment(this.editForm.get(['winnerChosenAt'])!.value, DATE_TIME_FORMAT)
-        : undefined,
       image: this.editForm.get(['image'])!.value,
       type: this.editForm.get(['type'])!.value,
       imageContentType: this.editForm.get(['imageContentType'])!.value,
       creditsRequired: this.editForm.get(['creditsRequired'])!.value,
-      winnerId: this.editForm.get(['winnerId'])!.value,
+      winner: this.editForm.get(['winner'])!.value,
+      title: this.editForm.get(['title'])!.value,
     };
   }
 

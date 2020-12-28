@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -86,6 +88,14 @@ public class PrizeRegistrationResource {
     public List<PrizeRegistrationDTO> getAllPrizeRegistrations() {
         log.debug("REST request to get all PrizeRegistrations");
         return prizeRegistrationService.findAll();
+    }
+
+    @GetMapping("/prize-registrations/number-of-registrations/{id}")
+    public Map<String, Integer> getNumberOfPrizeRegistrationsByPrizeId(@PathVariable Long id) {
+        log.debug("REST request to get all PrizeRegistrations");
+        Map<String, Integer> result = new HashMap<>();
+        result.put("count", prizeRegistrationService.findNumberOfTicketsRegisteredForPrize(id));
+        return result;
     }
 
     /**
