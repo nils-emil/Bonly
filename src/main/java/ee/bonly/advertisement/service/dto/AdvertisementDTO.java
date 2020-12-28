@@ -21,7 +21,7 @@ public class AdvertisementDTO implements Serializable {
 
     private String image;
 
-    private String imageId;
+    private Long imageId;
 
     private List<AdvertisementAnswersDTO> advertisementAnswers;
 
@@ -124,11 +124,11 @@ public class AdvertisementDTO implements Serializable {
         this.creditCount = creditCount;
     }
 
-    public String getImageId() {
+    public Long getImageId() {
         return imageId;
     }
 
-    public void setImageId(String imageId) {
+    public void setImageId(Long imageId) {
         this.imageId = imageId;
     }
 }

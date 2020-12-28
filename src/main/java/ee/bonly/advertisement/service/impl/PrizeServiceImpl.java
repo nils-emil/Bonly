@@ -1,13 +1,14 @@
 package ee.bonly.advertisement.service.impl;
 
-import ee.bonly.advertisement.service.PrizeService;
+import ee.bonly.advertisement.domain.Image;
 import ee.bonly.advertisement.domain.Prize;
+import ee.bonly.advertisement.repository.ImageRepository;
 import ee.bonly.advertisement.repository.PrizeRepository;
+import ee.bonly.advertisement.service.PrizeService;
 import ee.bonly.advertisement.service.dto.PrizeDTO;
 import ee.bonly.advertisement.service.mapper.PrizeMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -26,17 +27,29 @@ public class PrizeServiceImpl implements PrizeService {
 
     private final PrizeRepository prizeRepository;
 
+    private final ImageRepository imageRepository;
+
     private final PrizeMapper prizeMapper;
 
-    public PrizeServiceImpl(PrizeRepository prizeRepository, PrizeMapper prizeMapper) {
+    public PrizeServiceImpl(PrizeRepository prizeRepository,
+                            ImageRepository imageRepository,
+                            PrizeMapper prizeMapper) {
         this.prizeRepository = prizeRepository;
         this.prizeMapper = prizeMapper;
+        this.imageRepository = imageRepository;
     }
 
     @Override
     public PrizeDTO save(PrizeDTO prizeDTO) {
         log.debug("Request to save Prize : {}", prizeDTO);
         Prize prize = prizeMapper.toEntity(prizeDTO);
+        String base64Image = prizeDTO.getImage().split(",")[1];
+        byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
+        Image image = new Image();
+        image.setId(prizeDTO.getImageId());
+        image.setContent(imageBytes);
+        Image save = imageRepository.save(image);
+        prize.setImageId(save.getId());
         prize = prizeRepository.save(prize);
         return prizeMapper.toDto(prize);
     }

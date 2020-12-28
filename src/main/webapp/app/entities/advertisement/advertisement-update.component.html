@@ -48,8 +48,7 @@
 
                 <button type="button" (click)="openImageModal()">Add or change image</button>
                 <br>
-                <img [src]="editForm.get('image')!.value" />
-
+                <img  src="{{getImageSource()}}"/>
 
                 <div class="form-group">
                     <label class="form-control-label"  for="field_creditCount">Amount of credit</label>

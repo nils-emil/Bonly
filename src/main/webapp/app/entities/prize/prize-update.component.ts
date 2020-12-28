@@ -16,6 +16,7 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { BonlyImageCropperModalComponent } from '../advertisement/bonly-image-cropper/bonly-image-cropper-modal.component';
 import { UserService } from '../../core/user/user.service';
 import { PersonService } from '../person/person.service';
+import { SERVER_API_URL } from '../../app.constants';
 
 @Component({
   selector: 'jhi-prize-update',
@@ -29,11 +30,13 @@ export class PrizeUpdateComponent implements OnInit {
     registationStops: [],
     creditsRequired: [],
     image: [null, [Validators.required]],
+    imageId: [null],
     type: [null, [Validators.required]],
     title: [null, [Validators.required]],
     imageContentType: [],
     winner: [],
   });
+  public imageDownload = SERVER_API_URL + 'api/image/';
 
   constructor(
     protected prizeService: PrizeService,
@@ -51,8 +54,9 @@ export class PrizeUpdateComponent implements OnInit {
       if (!prize.id) {
         const today = moment().startOf('day');
         prize.registationStops = today;
+        console.log(prize);
       }
-
+      console.log(prize);
       this.updateForm(prize);
     });
   }
@@ -79,6 +83,7 @@ export class PrizeUpdateComponent implements OnInit {
       registationStops: prize.registationStops ? prize.registationStops.format(DATE_TIME_FORMAT) : null,
       creditsRequired: prize.creditsRequired,
       image: prize.image,
+      imageId: prize.imageId,
       type: prize.type,
       imageContentType: prize.imageContentType,
       winner: prize.winner,
@@ -108,6 +113,7 @@ export class PrizeUpdateComponent implements OnInit {
         ? moment(this.editForm.get(['registationStops'])!.value, DATE_TIME_FORMAT)
         : undefined,
       image: this.editForm.get(['image'])!.value,
+      imageId: this.editForm.get(['imageId'])!.value,
       type: this.editForm.get(['type'])!.value,
       imageContentType: this.editForm.get(['imageContentType'])!.value,
       creditsRequired: this.editForm.get(['creditsRequired'])!.value,
@@ -144,5 +150,9 @@ export class PrizeUpdateComponent implements OnInit {
     this.eventManager.subscribe('croppedImageSelected', () => {
       this.editForm.patchValue({ image: modalRef.componentInstance.croppedImage });
     });
+  }
+
+  getImageSource(): string {
+    return this.editForm.get('image')!.value ? this.editForm.get('image')!.value : this.imageDownload + this.editForm.get('imageId')!.value;
   }
 }

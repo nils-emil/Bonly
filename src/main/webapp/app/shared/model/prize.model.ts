@@ -4,6 +4,7 @@ export interface IPrize {
   id?: number;
   registationStops?: Moment;
   image?: any;
+  imageId?: any;
   imageContentType?: string;
   type?: string;
   creditsRequired?: number;
@@ -16,6 +17,7 @@ export class Prize implements IPrize {
     public id?: number,
     public registationStops?: Moment,
     public image?: any,
+    public imageId?: any,
     public imageContentType?: string,
     public type?: string,
     public creditsRequired?: number,

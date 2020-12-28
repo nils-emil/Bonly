@@ -7,6 +7,7 @@ export interface IAdvertisement {
   activeUntill?: Moment;
   imageContentType?: string;
   image?: any;
+  imageId?: any;
   advertisementAnswers?: AdvertisementAnswers[];
   creditCount?: number;
   question?: string;
@@ -20,6 +21,7 @@ export class Advertisement implements IAdvertisement {
     public activeUntill?: Moment,
     public imageContentType?: string,
     public image?: any,
+    public imageId?: any,
     public advertisementAnswers?: AdvertisementAnswers[],
     public creditCount?: number,
     public question?: string,

@@ -15,6 +15,7 @@ import { IAdvertisementAnswers } from 'app/shared/model/advertisement-answers.mo
 import { AdvertisementAnswersService } from 'app/entities/advertisement-answers/advertisement-answers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BonlyImageCropperModalComponent } from './bonly-image-cropper/bonly-image-cropper-modal.component';
+import { SERVER_API_URL } from '../../app.constants';
 
 @Component({
   selector: 'jhi-advertisement-update',
@@ -29,12 +30,14 @@ export class AdvertisementUpdateComponent implements OnInit {
     activeFrom: [null, [Validators.required]],
     activeUntill: [null, [Validators.required]],
     image: [null, [Validators.required]],
+    imageId: [null],
     imageContentType: [],
     creditCount: [null, [Validators.required]],
     question: [null, [Validators.required]],
     correctAnswerId: [],
   });
   croppedImage: any = '';
+  public imageDownload = SERVER_API_URL + 'api/image/';
 
   constructor(
     protected dataUtils: JhiDataUtils,
@@ -86,6 +89,7 @@ export class AdvertisementUpdateComponent implements OnInit {
       activeFrom: advertisement.activeFrom ? advertisement.activeFrom.format(DATE_TIME_FORMAT) : null,
       activeUntill: advertisement.activeUntill ? advertisement.activeUntill.format(DATE_TIME_FORMAT) : null,
       image: advertisement.image,
+      imageId: advertisement.imageId,
       imageContentType: advertisement.imageContentType,
       creditCount: advertisement.creditCount,
       question: advertisement.question,
@@ -133,6 +137,7 @@ export class AdvertisementUpdateComponent implements OnInit {
         : undefined,
       imageContentType: this.editForm.get(['imageContentType'])!.value,
       image: this.editForm.get(['image'])!.value,
+      imageId: this.editForm.get(['imageId'])!.value,
       creditCount: this.editForm.get(['creditCount'])!.value,
       question: this.editForm.get(['question'])!.value,
       correctAnswerId: this.editForm.get(['correctAnswerId'])!.value,
@@ -167,5 +172,10 @@ export class AdvertisementUpdateComponent implements OnInit {
     this.eventManager.subscribe('croppedImageSelected', () => {
       this.editForm.patchValue({ image: modalRef.componentInstance.croppedImage });
     });
+  }
+
+  getImageSource(): string {
+    console.log();
+    return this.editForm.get('image')!.value ? this.editForm.get('image')!.value : this.imageDownload + this.editForm.get('imageId')!.value;
   }
 }

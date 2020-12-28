@@ -63,7 +63,9 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
         Image image = new Image();
         image.setContent(imageBytes);
-        imageRepository.save(image);
+        image.setId(advertisementDTO.getImageId());
+        Image save = imageRepository.save(image);
+        advertisement.setImageId(save.getId());
         advertisement = advertisementRepository.save(advertisement);
         return advertisementMapper.toDto(advertisement);
     }
