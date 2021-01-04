@@ -37,9 +37,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://192.168.99.100:5444/bonly
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://bonly.ee:5000/Bonly
+    username: Bonly
+    password: 0799c272-2bee-11eb-adc1-0242ac120002
     hikari:
       poolName: Hikari
       auto-commit: false

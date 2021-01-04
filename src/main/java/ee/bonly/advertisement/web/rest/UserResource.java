@@ -2,6 +2,7 @@ package ee.bonly.advertisement.web.rest;
 
 import ee.bonly.advertisement.config.Constants;
 import ee.bonly.advertisement.domain.User;
+import ee.bonly.advertisement.repository.AllowedEmailRepository;
 import ee.bonly.advertisement.repository.UserRepository;
 import ee.bonly.advertisement.security.AuthoritiesConstants;
 import ee.bonly.advertisement.service.MailService;

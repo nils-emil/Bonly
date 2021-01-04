@@ -3,11 +3,13 @@ package ee.bonly.advertisement.service;
 import ee.bonly.advertisement.config.Constants;
 import ee.bonly.advertisement.domain.Authority;
 import ee.bonly.advertisement.domain.User;
+import ee.bonly.advertisement.repository.AllowedEmailRepository;
 import ee.bonly.advertisement.repository.AuthorityRepository;
 import ee.bonly.advertisement.repository.UserRepository;
 import ee.bonly.advertisement.security.AuthoritiesConstants;
 import ee.bonly.advertisement.security.SecurityUtils;
 import ee.bonly.advertisement.service.dto.UserDTO;
+import ee.bonly.advertisement.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.security.RandomUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,15 +37,21 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final AllowedEmailRepository allowedEmailRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     private final AuthorityRepository authorityRepository;
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    public UserService(UserRepository userRepository,
+                       AllowedEmailRepository allowedEmailRepository,
+                       PasswordEncoder passwordEncoder,
+                       AuthorityRepository authorityRepository, CacheManager cacheManager) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.allowedEmailRepository = allowedEmailRepository;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
     }
@@ -86,6 +94,11 @@ public class UserService {
     }
 
     public User registerUser(UserDTO userDTO, String password) {
+        if (!allowedEmailRepository.findOneByEmail(userDTO.getEmail().toLowerCase()).isPresent()) {
+            throw new BadRequestAlertException("Email is not allowed to register. With private BETA testing," +
+                " all emails need to be whitelisted prior to registering.", "userManagement", "emailNotWhiteListed");
+        }
+
         userRepository.findOneByLogin(userDTO.getLogin().toLowerCase()).ifPresent(existingUser -> {
             boolean removed = removeNonActivatedUser(existingUser);
             if (!removed) {

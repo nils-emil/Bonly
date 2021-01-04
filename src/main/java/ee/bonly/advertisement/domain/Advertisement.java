@@ -39,6 +39,9 @@ public class Advertisement implements Serializable {
     @Column(name = "credit_count", nullable = false)
     private Long creditCount;
 
+    @Column(name = "priority", nullable = false)
+    private Integer priority;
+
     @Column(name = "image_id", nullable = false)
     private Long imageId;
 
@@ -143,5 +146,13 @@ public class Advertisement implements Serializable {
 
     public void setImageId(Long imageId) {
         this.imageId = imageId;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 }

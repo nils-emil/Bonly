@@ -24,6 +24,6 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
         "    AND user_advertisement_answers.advertisement_id=advertisement.id\n" +
         "    ) " +
         "AND active_untill > now() AND active_from < now()" +
-        "LIMIT 1;", nativeQuery = true)
+        " ORDER BY priority LIMIT 1;", nativeQuery = true)
     Advertisement findOneUnansweredAdvertisementByUserid(Long userId);
 }
